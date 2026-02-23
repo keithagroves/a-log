@@ -142,6 +142,24 @@ class Journal:
         text = self._to_text()
         text = self._encrypt(text)
         self._store(filename, text)
+        self._update_semantic_index()
+
+    def _update_semantic_index(self) -> None:
+        """Incrementally update semantic index if semantic deps are available."""
+        semantic_config = self.config.get("semantic_search", {})
+        if not semantic_config.get("auto_index", False):
+            return
+
+        try:
+            from jrnl.search import update_index
+
+            update_index(self, self.config)
+        except ImportError:
+            # Semantic extras not installed
+            return
+        except Exception as exc:
+            # Indexing errors should not block core journal writes
+            logging.debug("Semantic index update skipped: %s", exc)
 
     def validate_parsing(self) -> bool:
         """Confirms that the jrnl is still parsed correctly after conversion to text."""

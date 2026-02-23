@@ -7,6 +7,7 @@ import textwrap
 
 from jrnl.commands import postconfig_decrypt
 from jrnl.commands import postconfig_encrypt
+from jrnl.commands import postconfig_index_search
 from jrnl.commands import postconfig_import
 from jrnl.commands import postconfig_list
 from jrnl.commands import preconfig_diagnostic
@@ -179,6 +180,13 @@ def parse_args(args: list[str] = []) -> argparse.Namespace:
         """,
     )
     standalone.add_argument(
+        "--index-search",
+        action="store_const",
+        const=postconfig_index_search,
+        dest="postconfig_cmd",
+        help="Build or rebuild the semantic search index",
+    )
+    standalone.add_argument(
         "--file",
         metavar="FILENAME",
         dest="filename",
@@ -269,6 +277,12 @@ def parse_args(args: list[str] = []) -> argparse.Namespace:
         metavar="TEXT",
         help="Show entries containing specific text (put quotes around text with "
         "spaces)",
+    )
+    reading.add_argument(
+        "-search",
+        dest="search",
+        metavar="QUERY",
+        help="Search entries by meaning using semantic similarity",
     )
     reading.add_argument(
         "-and",

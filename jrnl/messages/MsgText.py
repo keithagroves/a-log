@@ -249,6 +249,17 @@ class MsgText(Enum):
     NoEntriesFound = "no entries found"
     EntryFoundCountSingular = "{num} entry found"
     EntryFoundCountPlural = "{num} entries found"
+    SemanticSearchNotInstalled = (
+        "Semantic search requires extra dependencies. "
+        "Install with: poetry install -E semantic"
+    )
+    SemanticIndexBuilt = "Semantic search index built successfully."
+    SemanticIndexUpdated = "Semantic search index updated."
+    SemanticNoResults = "No semantically similar entries found."
+    SemanticIndexEncrypted = (
+        "Semantic index is encrypted. Journal password required for search."
+    )
+    SemanticIndexModelChanged = "Embedding model changed. Rebuilding semantic index..."
 
     # --- Formats --- #
     HeadingsPastH6 = """

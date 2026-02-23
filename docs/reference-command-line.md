@@ -8,9 +8,10 @@ License: https://www.gnu.org/licenses/gpl-3.0.html
 ## Synopsis
 ```
 usage: jrnl [--debug] [--help] [--version] [--list] [--encrypt] [--decrypt]
-            [--import] [-on DATE] [-today-in-history] [-month DATE]
-            [-day DATE] [-year DATE] [-from DATE] [-to DATE] [-contains TEXT]
-            [-and] [-starred] [-n [NUMBER]] [-not [TAG]] [--edit] [--delete]
+            [--import] [--index-search] [-on DATE] [-today-in-history]
+            [-month DATE] [-day DATE] [-year DATE] [-from DATE] [-to DATE]
+            [-contains TEXT] [-search QUERY] [-and] [-starred]
+            [-n [NUMBER]] [-not [TAG]] [--edit] [--delete]
             [--format TYPE] [--tags] [--short]
             [--config-override CONFIG_KEY CONFIG_VALUE]
             [--config-file CONFIG_FILE_PATH]
@@ -36,6 +37,15 @@ Encrypt a journal. See [encryption](encryption.md) for more information.
 ### --decrypt
 Decrypt a journal. See [encryption](encryption.md) for more information.
 
+
+### --index-search
+Build or rebuild the semantic search index for the default journal (or a
+specified journal). This downloads an embedding model on first run (~50 MB)
+and indexes all entries for natural-language search.
+
+Requires the `semantic` extra: `poetry install -E semantic`.
+
+See [Semantic Search](usage.md#semantic-search) for more information.
 
 ### --import
 Import entries from another journal. If any entries have the exact same content
@@ -81,6 +91,7 @@ entries, such as `yesterday`, `today`, `Tuesday`, or `2021-08-01`.
 | -not [TAG] | Exclude entries with this tag |
 | -not -starred | Exclude entries that are starred |
 | -not -tagged | Exclude entries that are tagged |
+| -search QUERY | Find entries semantically similar to QUERY (requires `jrnl[semantic]`) |
 
 ## Searching Options
 These help you do various tasks with the selected entries from your search.

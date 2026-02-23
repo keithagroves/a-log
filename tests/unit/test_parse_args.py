@@ -36,6 +36,7 @@ def expected_args(**kwargs):
         "on_date": None,
         "preconfig_cmd": None,
         "postconfig_cmd": None,
+        "search": None,
         "short": False,
         "starred": False,
         "start_date": None,
@@ -148,6 +149,14 @@ def test_import_alone():
     assert cli_as_dict("--import") == expected_args(postconfig_cmd=postconfig_import)
 
 
+def test_index_search_alone():
+    from jrnl.commands import postconfig_index_search
+
+    assert cli_as_dict("--index-search") == expected_args(
+        postconfig_cmd=postconfig_index_search
+    )
+
+
 def test_file_flag_alone():
     assert cli_as_dict("--file test.txt") == expected_args(filename="test.txt")
     assert cli_as_dict("--file 'lorem ipsum.txt'") == expected_args(
@@ -215,6 +224,12 @@ def test_and_alone():
 
 def test_tags_alone():
     assert cli_as_dict("--tags") == expected_args(tags=True)
+
+
+def test_search_alone():
+    assert cli_as_dict('-search "feeling anxious"') == expected_args(
+        search="feeling anxious"
+    )
 
 
 def test_text_alone():

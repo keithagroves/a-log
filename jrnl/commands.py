@@ -180,3 +180,18 @@ def postconfig_decrypt(
         save_config(original_config)
 
     return 0
+
+
+@cmd_requires_valid_journal_name
+def postconfig_index_search(
+    args: argparse.Namespace, config: dict, **_
+) -> int:
+    """Build or rebuild semantic search index for the selected journal."""
+    from jrnl.journals import open_journal
+    from jrnl.search import build_index
+
+    journal = open_journal(args.journal_name, config)
+    build_index(journal, config)
+    print_msg(Message(MsgText.SemanticIndexBuilt, MsgStyle.NORMAL))
+
+    return 0

@@ -207,7 +207,22 @@ def search_mode(args: "Namespace", journal: "Journal", **kwargs) -> None:
         logging.debug("Search mode: has no search args")
         return
 
+    if args.search:
+        logging.debug("Search mode: running semantic search")
+        _semantic_search(args=args, journal=journal, config=kwargs["config"])
+        return
+
     logging.debug("Search mode: has search args")
+    _filter_journal_entries(args, journal)
+
+
+def _semantic_search(args: "Namespace", journal: "Journal", config: dict) -> None:
+    from jrnl.search import semantic_search
+
+    results = semantic_search(journal, args.search, config)
+    journal.entries = results
+
+    # Apply additional classic filters (dates/tags/contains/etc.) on top
     _filter_journal_entries(args, journal)
 
 
@@ -413,6 +428,7 @@ def _has_search_args(args: "Namespace") -> bool:
     return any(
         (
             args.contains,
+            args.search,
             args.tagged,
             args.excluded,
             args.exclude_starred,

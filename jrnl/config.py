@@ -83,6 +83,12 @@ def get_default_config() -> dict[str, Any]:
         "highlight": True,
         "linewrap": 79,
         "indent_character": "|",
+        "semantic_search": {
+            "model": "BAAI/bge-small-en-v1.5",
+            "threshold": 0.4,
+            "top_k": 10,
+            "auto_index": False,
+        },
         "colors": {
             "body": "none",
             "date": "none",

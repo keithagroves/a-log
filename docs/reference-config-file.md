@@ -126,6 +126,30 @@ To disable colored output, set the value to `NONE`.
 ### display_format
 Specifies formatter to use by default. See [formats](formats.md).
 
+### semantic_search
+A dictionary that controls semantic search behavior. It has four subkeys:
+
+- **model**: The embedding model to use. Default: `BAAI/bge-small-en-v1.5`.
+  The model is downloaded on first use (~50 MB).
+- **threshold**: Minimum cosine similarity score (0.0–1.0) for a result to be
+  included. Default: `0.4`.
+- **top_k**: Maximum number of results to return. Default: `10`.
+- **auto_index**: If `true`, the semantic index is updated automatically each
+  time you write a new entry. If `false`, you must run `--index-search`
+  manually to update the index. Default: `false`.
+
+Example:
+
+```yaml
+semantic_search:
+  model: BAAI/bge-small-en-v1.5
+  threshold: 0.4
+  top_k: 10
+  auto_index: true
+```
+
+Requires the `semantic` extra: `poetry install -E semantic`.
+
 ### version
 `jrnl` automatically updates this field to the version that it is running.
 There is no need to change this field manually.

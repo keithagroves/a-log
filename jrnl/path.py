@@ -34,6 +34,12 @@ def get_default_journal_path() -> str:
     return os.path.join(journal_data_path, DEFAULT_JOURNAL_NAME)
 
 
+def get_semantic_index_path(journal_path: str) -> str:
+    """Return semantic index path co-located with journal file."""
+    journal_dir = os.path.dirname(expand_path(journal_path))
+    return os.path.join(journal_dir, ".jrnl_semantic.db")
+
+
 def get_templates_path() -> str:
     """
     Get the path to the XDG templates directory. Creates the directory if it

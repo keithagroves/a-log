@@ -25,6 +25,12 @@ dependencies = [
   'tzlocal (>=4.0)' # https://github.com/regebro/tzlocal/blob/master/CHANGES.txt
 ]
 
+[project.optional-dependencies]
+semantic = [
+  'fastembed (>=0.3)',
+  'numpy (>=1.24)',
+]
+
 [project.urls]
 homepage = "https://jrnl.sh"
 repository = "https://github.com/jrnl-org/jrnl"

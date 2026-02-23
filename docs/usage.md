@@ -254,3 +254,61 @@ jrnl --list
 
 The journals displayed correspond to those specified in the `jrnl`
 [configuration file](./reference-config-file.md#journals).
+
+## Semantic Search ##
+
+Semantic search lets you find journal entries by meaning rather than exact
+keywords. For example, searching for "feeling anxious" will also find entries
+about "stress" or "worry", even if those exact words weren't used.
+
+### Installation
+
+Semantic search requires an optional dependency:
+
+```sh
+poetry install -E semantic
+```
+
+### Building the Index
+
+Before searching, build the semantic index. This downloads a small embedding
+model (~50 MB) on first run and indexes all your entries:
+
+```sh
+jrnl --index-search
+```
+
+### Searching
+
+Use the `-search` flag with a natural language query:
+
+```sh
+jrnl -search "outdoor adventures"
+jrnl -search "cooking recipes"
+jrnl -search "feeling happy"
+```
+
+Results are ranked by relevance. You can combine `-search` with other
+filters:
+
+```sh
+jrnl -search "travel" -from 2025
+jrnl -search "work stress" -n 5
+```
+
+### Auto-Indexing
+
+By default, you need to run `--index-search` manually to update the index
+after adding entries. To index automatically on every write, set `auto_index`
+to `true` in your [configuration file](./reference-config-file.md#semantic_search):
+
+```yaml
+semantic_search:
+  auto_index: true
+```
+
+### Encrypted Journals
+
+Semantic search works with encrypted journals. The semantic index is encrypted
+with a separate key derived from your journal password, so embeddings are never
+stored in plain text.

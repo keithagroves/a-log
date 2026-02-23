@@ -10,6 +10,7 @@ import pytest
 
 from jrnl.path import absolute_path
 from jrnl.path import expand_path
+from jrnl.path import get_semantic_index_path
 from jrnl.path import home_dir
 
 
@@ -104,3 +105,13 @@ def test_absolute_path(mock_abspath, mock_expand_path):
     assert absolute_path(test_val) == mock_abspath.return_value
     mock_expand_path.assert_called_with(test_val)
     mock_abspath.assert_called_with(mock_expand_path.return_value)
+
+
+@patch("jrnl.path.expand_path")
+def test_get_semantic_index_path(mock_expand_path):
+    mock_expand_path.return_value = "/tmp/my-journal.txt"
+
+    path = get_semantic_index_path("~/my-journal.txt")
+
+    assert path == "/tmp/.jrnl_semantic.db"
+    mock_expand_path.assert_called_with("~/my-journal.txt")
