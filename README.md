@@ -5,7 +5,7 @@ License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
 <p align="center">
-  <img src="a-log.png" alt="a-log" width="300" />
+  <img src="a-log.png" alt="a-log" width="600" />
 </p>
 
 # a-log
