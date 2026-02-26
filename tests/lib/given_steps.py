@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import json
@@ -15,8 +15,8 @@ from pytest_bdd import given
 from pytest_bdd.parsers import parse
 from pytest_bdd.parsers import re
 
-from jrnl import __version__
-from jrnl.time import __get_pdt_calendar
+from alog import __version__
+from alog.time import __get_pdt_calendar
 from tests.lib.fixtures import FailedKeyring
 from tests.lib.fixtures import NoKeyring
 from tests.lib.fixtures import TestKeyring
@@ -43,7 +43,7 @@ def we_enter_editor(editor_method, editor_input, editor_state):
 @given(parse('now is "{date_str}"'))
 def now_is_str(date_str, mock_factories):
     class DatetimeMagicMock(MagicMock):
-        # needed because jrnl does some reflection on datetime
+        # needed because alog does some reflection on datetime
         def __instancecheck__(self, subclass):
             return isinstance(subclass, datetime)
 
@@ -56,7 +56,7 @@ def now_is_str(date_str, mock_factories):
 
         return now
 
-    # jrnl uses two different classes to parse dates, so both must be mocked
+    # alog uses two different classes to parse dates, so both must be mocked
     datetime_mock = DatetimeMagicMock(wraps=datetime)
     datetime_mock.now.side_effect = mocked_now
 
@@ -68,7 +68,7 @@ def now_is_str(date_str, mock_factories):
 
     mock_factories["datetime"] = lambda: patch("datetime.datetime", new=datetime_mock)
     mock_factories["calendar_parse"] = lambda: patch(
-        "jrnl.time.__get_pdt_calendar", return_value=calendar_mock
+        "alog.time.__get_pdt_calendar", return_value=calendar_mock
     )
 
 
@@ -123,7 +123,7 @@ def we_use_the_config(request, temp_dir, working_dir, config_file):
         and os.path.exists(config_dest)
         and os.path.getsize(config_dest) > 0
     ):
-        # Add jrnl version to file for 2.x journals
+        # Add alog version to file for 2.x journals
         with open(config_dest, "a") as cf:
             cf.write("version: {}".format(__version__))
 

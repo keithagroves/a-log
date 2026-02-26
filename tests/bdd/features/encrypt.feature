@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 Feature: Encrypting and decrypting journals
@@ -6,10 +6,10 @@ Feature: Encrypting and decrypting journals
     Scenario: Decrypting a journal
         Given we use the config "encrypted.yaml"
         And we use the password "bad doggie no biscuit" if prompted
-        When we run "jrnl --decrypt"
+        When we run "alog --decrypt"
         Then the output should contain "Journal decrypted"
         And the config for journal "default" should contain "encrypt: false"
-        When we run "jrnl -99 --short"
+        When we run "alog -99 --short"
         Then the output should be
             """
             2013-06-09 15:39 My first entry.
@@ -21,9 +21,9 @@ Feature: Encrypting and decrypting journals
     Scenario: Trying to decrypt an already unencrypted journal
         # This should warn the user that the journal is already encrypted
         Given we use the config "simple.yaml"
-        When we run "jrnl --decrypt"
+        When we run "alog --decrypt"
         Then the config for journal "default" should contain "encrypt: false"
-        When we run "jrnl -99 --short"
+        When we run "alog -99 --short"
         Then the output should be
             """
             2013-06-09 15:39 My first entry.
@@ -33,13 +33,13 @@ Feature: Encrypting and decrypting journals
 
     Scenario: Trying to encrypt an already encrypted journal
         Given we use the config "encrypted.yaml"
-        When we run "jrnl --encrypt" and enter "bad doggie no biscuit"
+        When we run "alog --encrypt" and enter "bad doggie no biscuit"
         Then the output should contain "already encrypted. Create a new password."
         Then we should be prompted for a password
 
     Scenario Outline: Encrypting a journal
         Given we use the config "simple.yaml"
-        When we run "jrnl --encrypt" and enter
+        When we run "alog --encrypt" and enter
             """
             swordfish
             swordfish
@@ -48,14 +48,14 @@ Feature: Encrypting and decrypting journals
         Then we should get no error
         And the output should contain "Journal encrypted"
         And the config for journal "default" should contain "encrypt: true"
-        When we run "jrnl -n 1" and enter "swordfish"
+        When we run "alog -n 1" and enter "swordfish"
         Then we should be prompted for a password
         And the output should contain "2013-06-10 15:40 Life is good"
 
     Scenario: Encrypt journal twice and get prompted each time
         Given we use the config "simple.yaml"
         And we don't have a keyring
-        When we run "jrnl --encrypt" and enter
+        When we run "alog --encrypt" and enter
             """
             swordfish
             swordfish
@@ -63,7 +63,7 @@ Feature: Encrypting and decrypting journals
             """
         Then we should get no error
         And the output should contain "Journal encrypted"
-        When we run "jrnl --encrypt" and enter
+        When we run "alog --encrypt" and enter
             """
             swordfish
             tuna
@@ -78,7 +78,7 @@ Feature: Encrypting and decrypting journals
     Scenario: Encrypt journal twice and get prompted each time with keyring
         Given we use the config "simple.yaml"
         And we have a keyring
-        When we run "jrnl --encrypt" and enter
+        When we run "alog --encrypt" and enter
             """
             swordfish
             swordfish
@@ -86,7 +86,7 @@ Feature: Encrypting and decrypting journals
             """
         Then we should get no error
         And the output should contain "Journal encrypted"
-        When we run "jrnl --encrypt" and enter
+        When we run "alog --encrypt" and enter
             """
             tuna
             tuna
@@ -97,9 +97,9 @@ Feature: Encrypting and decrypting journals
         And we should be prompted for a password
         And the config for journal "default" should contain "encrypt: true"
 
-    Scenario Outline: Running jrnl with encrypt: true on unencryptable journals
+    Scenario Outline: Running alog with encrypt: true on unencryptable journals
         Given we use the config "<config_file>"
-        When we run "jrnl --config-override encrypt true here is a new entry"
+        When we run "alog --config-override encrypt true here is a new entry"
         Then the error output should contain "journal can't be encrypted"
 
         Examples: configs
@@ -110,7 +110,7 @@ Feature: Encrypting and decrypting journals
 
     Scenario Outline: Attempt to encrypt a folder or DayOne journal should result in an error
         Given we use the config "<config_file>"
-        When we run "jrnl --encrypt"
+        When we run "alog --encrypt"
         Then the error output should contain "can't be encrypted"
 
         Examples: configs

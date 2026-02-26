@@ -1,12 +1,12 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import os
 
 import pytest
 
-from jrnl.exception import JrnlException
-from jrnl.install import find_alt_config
+from alog.exception import AlogException
+from alog.install import find_alt_config
 
 
 def test_find_alt_config(request):
@@ -21,7 +21,7 @@ def test_find_alt_config_not_exist(request):
     bad_config_path = os.path.join(
         request.fspath.dirname, "..", "data", "configs", "does-not-exist.yaml"
     )
-    with pytest.raises(JrnlException) as ex:
+    with pytest.raises(AlogException) as ex:
         found_alt_config = find_alt_config(bad_config_path)
         assert found_alt_config is not None
-    assert isinstance(ex.value, JrnlException)
+    assert isinstance(ex.value, AlogException)

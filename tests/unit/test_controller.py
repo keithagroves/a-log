@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import random
@@ -7,9 +7,9 @@ from unittest import mock
 
 import pytest
 
-import jrnl
-from jrnl.args import parse_args
-from jrnl.controller import _display_search_results
+import alog
+from alog.args import parse_args
+from alog.controller import _display_search_results
 
 
 @pytest.fixture
@@ -21,7 +21,7 @@ def random_string():
 def test_display_search_results_pretty_short(export_format):
     mock_args = parse_args(["--format", export_format])
 
-    test_journal = jrnl.journals.Journal()
+    test_journal = alog.journals.Journal()
     test_journal.new_entry("asdf")
 
     test_journal.pprint = mock.Mock()
@@ -34,7 +34,7 @@ def test_display_search_results_pretty_short(export_format):
 @pytest.mark.parametrize(
     "export_format", ["markdown", "json", "xml", "yaml", "fancy", "dates"]
 )
-@mock.patch("jrnl.plugins.get_exporter")
+@mock.patch("alog.plugins.get_exporter")
 @mock.patch("builtins.print")
 def test_display_search_results_builtin_plugins(
     mock_print, mock_exporter, export_format, random_string
@@ -42,7 +42,7 @@ def test_display_search_results_builtin_plugins(
     test_filename = random_string
     mock_args = parse_args(["--format", export_format, "--file", test_filename])
 
-    test_journal = jrnl.journals.Journal()
+    test_journal = alog.journals.Journal()
     test_journal.new_entry("asdf")
 
     mock_export = mock.Mock()

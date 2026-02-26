@@ -1,13 +1,13 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 Feature: Searching in a journal
 
     Scenario Outline: Displaying entries using -on today should display entries created today
         Given we use the config "<config_file>"
-        When we run "jrnl today: Adding an entry right now."
+        When we run "alog today: Adding an entry right now."
         Then we should get no error
-        When we run "jrnl -on today"
+        When we run "alog -on today"
         Then the output should contain "Adding an entry right now."
         But the output should not contain "Everything is alright"
         And the output should not contain "Life is good"
@@ -20,13 +20,13 @@ Feature: Searching in a journal
 
     Scenario Outline: Displaying entries using -from day should display correct entries
         Given we use the config "<config_file>"
-        When we run "jrnl yesterday: This thing happened yesterday"
+        When we run "alog yesterday: This thing happened yesterday"
         Then we should get no error
-        When we run "jrnl today at 11:59pm: Adding an entry right now."
+        When we run "alog today at 11:59pm: Adding an entry right now."
         Then we should get no error
-        When we run "jrnl tomorrow: A future entry."
+        When we run "alog tomorrow: A future entry."
         Then we should get no error
-        When we run "jrnl -from today"
+        When we run "alog -from today"
         Then the output should contain "2 entries found"
         And the output should contain "Adding an entry right now."
         And the output should contain "A future entry."
@@ -41,13 +41,13 @@ Feature: Searching in a journal
     Scenario Outline: Displaying entries using -from and -to day should display correct entries
         Given we use the config "<config_file>"
         And now is "2022-03-10 02:32:00 PM"
-        When we run "jrnl yesterday: This thing happened yesterday"
+        When we run "alog yesterday: This thing happened yesterday"
         Then we should get no error
-        When we run "jrnl today at 11:59pm: Adding an entry right now."
+        When we run "alog today at 11:59pm: Adding an entry right now."
         Then we should get no error
-        When we run "jrnl tomorrow: A future entry."
+        When we run "alog tomorrow: A future entry."
         Then we should get no error
-        When we run "jrnl -from yesterday -to today"
+        When we run "alog -from yesterday -to today"
         Then the output should contain "2 entries found"
         And the output should contain "This thing happened yesterday"
         And the output should contain "Adding an entry right now."
@@ -61,7 +61,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for a string
         Given we use the config "<config_file>"
-        When we run "jrnl -contains first --short"
+        When we run "alog -contains first --short"
         Then we should get no error
         And the output should contain "1 entry found"
         And the output should be
@@ -77,7 +77,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for an unknown string
         Given we use the config "<config_file>"
-        When we run "jrnl -contains slkdfsdkfjsd"
+        When we run "alog -contains slkdfsdkfjsd"
         Then we should get no error
         And the output should contain "no entries found"
         And the output should not contain "slkdfsdkfjsd"
@@ -90,7 +90,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Multiple -contains returns entries that match any
         Given we use the config "<config_file>"
-        When we run "jrnl -contains emojis -contains lorem --short"
+        When we run "alog -contains emojis -contains lorem --short"
         Then we should get no error
         And the output should contain "3 entries found"
         And the output should be
@@ -108,7 +108,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Multiple -contains with -and returns only entries that match all
         Given we use the config "<config_file>"
-        When we run "jrnl -contains emojis -contains nulla -and --short"
+        When we run "alog -contains emojis -contains nulla -and --short"
         Then we should get no error
         And the output should contain "1 entry found"
         And the output should be
@@ -124,7 +124,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for a string within tag results
         Given we use the config "<config_file>"
-        When we run "jrnl @tagone -contains maybe"
+        When we run "alog @tagone -contains maybe"
         Then we should get no error
         And the output should contain "maybe"
 
@@ -136,7 +136,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for a string within AND tag results
         Given we use the config "<config_file>"
-        When we run "jrnl -and @tagone @tagtwo -contains maybe"
+        When we run "alog -and @tagone @tagtwo -contains maybe"
         Then we should get no error
         And the output should contain "1 entry found"
         And the output should contain "maybe"
@@ -149,7 +149,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for a string within NOT tag results
         Given we use the config "<config_file>"
-        When we run "jrnl -not @tagone -contains lonesome"
+        When we run "alog -not @tagone -contains lonesome"
         Then we should get no error
         And the output should contain "1 entry found"
         And the output should contain "lonesome"
@@ -164,7 +164,7 @@ Feature: Searching in a journal
     Scenario Outline: Searching for unstarred entries
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -not -starred"
+        When we run "alog -not -starred"
         Then we should get no error
         And the output should contain "2 entries found"
 
@@ -177,7 +177,7 @@ Feature: Searching in a journal
     Scenario Outline: Searching for tagged entries
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -tagged"
+        When we run "alog -tagged"
         Then we should get no error
         And the output should contain "3 entries found"
 
@@ -189,11 +189,11 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for untagged entries
         Given we use the config "empty_folder.yaml"
-        When we run "jrnl Tagged entry. This one has a @tag."
+        When we run "alog Tagged entry. This one has a @tag."
         Then we should get no error
-        When we run "jrnl Untagged entry. This one has no tag."
+        When we run "alog Untagged entry. This one has no tag."
         Then we should get no error
-        When we run "jrnl -not -tagged"
+        When we run "alog -not -tagged"
         Then we should get no error
         And the output should contain "1 entry found"
         And the output should contain "This one has no tag"
@@ -206,9 +206,9 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for dates
         Given we use the config "<config_file>"
-        When we run "jrnl -on 2020-08-31 --short"
+        When we run "alog -on 2020-08-31 --short"
         Then the output should be "2020-08-31 14:32 A second entry in what I hope to be a long series."
-        When we run "jrnl -on 'august 31 2020' --short"
+        When we run "alog -on 'august 31 2020' --short"
         Then the output should be "2020-08-31 14:32 A second entry in what I hope to be a long series."
 
         Examples: configs
@@ -219,11 +219,11 @@ Feature: Searching in a journal
 
     Scenario: Out of order entries to a Folder journal should be listed in date order
         Given we use the config "empty_folder.yaml"
-        When we run "jrnl 3/7/2014 4:37pm: Second entry of journal."
+        When we run "alog 3/7/2014 4:37pm: Second entry of journal."
         Then we should get no error
-        When we run "jrnl 23 July 2013: Testing folder journal."
+        When we run "alog 23 July 2013: Testing folder journal."
         Then we should get no error
-        When we run "jrnl -2"
+        When we run "alog -2"
         Then the output should be
             """
             2013-07-23 09:00 Testing folder journal.
@@ -233,7 +233,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Searching for all tags should show counts of each tag
         Given we use the config "<config_file>"
-        When we run "jrnl --tags"
+        When we run "alog --tags"
         Then we should get no error
         And the output should be
             """
@@ -251,7 +251,7 @@ Feature: Searching in a journal
 
     Scenario Outline: Filtering journals should also filter tags
         Given we use the config "<config_file>"
-        When we run "jrnl -from 'september 2020' --tags"
+        When we run "alog -from 'september 2020' --tags"
         Then we should get no error
         And the output should be
             """
@@ -267,7 +267,7 @@ Feature: Searching in a journal
 
     Scenario Outline:  Excluding a tag should filter out all entries with that tag
         Given we use the config "<config_file>"
-        When we run "jrnl --tags -not @tagtwo"
+        When we run "alog --tags -not @tagtwo"
         Then the output should be
             """
             @tagthree            : 1
@@ -282,7 +282,7 @@ Feature: Searching in a journal
 
     Scenario Outline:  Excluding multiple tags should filter out all entries with those tags
         Given we use the config "<config_file>"
-        When we run "jrnl --tags -not @tagone -not @tagthree"
+        When we run "alog --tags -not @tagone -not @tagthree"
         Then the output should be
             """
             @tagtwo              : 1
@@ -297,7 +297,7 @@ Feature: Searching in a journal
     Scenario Outline:  Using -not should exclude all entries with that tag
         # https://github.com/jrnl-org/jrnl/issues/1472
         Given we use the config "<config_file>"
-        When we run "jrnl -not @tagtwo"
+        When we run "alog -not @tagtwo"
         Then the output should not contain "@tagtwo"
         And the editor should not have been called
 
@@ -310,12 +310,12 @@ Feature: Searching in a journal
     Scenario: DayOne tag searching should work with tags containing a mixture of upper and lower case.
         # https://github.com/jrnl-org/jrnl/issues/354
         Given we use the config "dayone.yaml"
-        When we run "jrnl @plAy"
+        When we run "alog @plAy"
         Then the output should contain "2013-05-17 11:39 This entry has tags!"
 
     Scenario: Loading a sample journal
         Given we use the config "simple.yaml"
-        When we run "jrnl -2"
+        When we run "alog -2"
         Then we should get no error
         And the output should be
             """
@@ -329,11 +329,11 @@ Feature: Searching in a journal
     Scenario Outline: Searching by month
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -month 9 --short"
+        When we run "alog -month 9 --short"
         Then the output should be "2020-09-24 09:14 The third entry finally after weeks without writing."
-        When we run "jrnl -month Sept --short"
+        When we run "alog -month Sept --short"
         Then the output should be "2020-09-24 09:14 The third entry finally after weeks without writing."
-        When we run "jrnl -month September --short"
+        When we run "alog -month September --short"
         Then the output should be "2020-09-24 09:14 The third entry finally after weeks without writing."
 
         Examples: configs
@@ -346,7 +346,7 @@ Feature: Searching in a journal
     Scenario Outline: Searching by day
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -day 31 --short"
+        When we run "alog -day 31 --short"
         Then the output should be "2020-08-31 14:32 A second entry in what I hope to be a long series."
 
         Examples: configs
@@ -359,10 +359,10 @@ Feature: Searching in a journal
     Scenario Outline: Searching by year
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl 2019-01-01 01:01: I like this year."
-        And we run "jrnl -year 2019 --short"
+        When we run "alog 2019-01-01 01:01: I like this year."
+        And we run "alog -year 2019 --short"
         Then the output should be "2019-01-01 01:01 I like this year."
-        When we run "jrnl -year 19 --short"
+        When we run "alog -year 19 --short"
         Then the output should be "2019-01-01 01:01 I like this year."
 
         Examples: configs
@@ -375,13 +375,13 @@ Feature: Searching in a journal
     Scenario Outline: Combining month, day, and year search terms
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -month 08 -day 29 --short"
+        When we run "alog -month 08 -day 29 --short"
         Then the output should be "2020-08-29 11:11 Entry the first."
-        When we run "jrnl -day 29 -year 2020 --short"
+        When we run "alog -day 29 -year 2020 --short"
         Then the output should be "2020-08-29 11:11 Entry the first."
-        When we run "jrnl -month 09 -year 2020 --short"
+        When we run "alog -month 09 -year 2020 --short"
         Then the output should be "2020-09-24 09:14 The third entry finally after weeks without writing."
-        When we run "jrnl -month 08 -day 29 -year 2020 --short"
+        When we run "alog -month 08 -day 29 -year 2020 --short"
         Then the output should be "2020-08-29 11:11 Entry the first."
 
         Examples: configs
@@ -395,8 +395,8 @@ Feature: Searching in a journal
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
         And now is "2020-08-31 02:32:00 PM"
-        When we run "jrnl 2019-08-31 01:01: Hi, from last year."
-        And we run "jrnl -today-in-history --short"
+        When we run "alog 2019-08-31 01:01: Hi, from last year."
+        And we run "alog -today-in-history --short"
         Then the output should contain "2 entries found"
         And the output should be
             """
@@ -413,7 +413,7 @@ Feature: Searching in a journal
 
     Scenario: Loading a DayOne Journal
         Given we use the config "dayone.yaml"
-        When we run "jrnl -from 'feb 2013'"
+        When we run "alog -from 'feb 2013'"
         Then we should get no error
         And the output should contain "3 entries found"
         And the output should be
@@ -428,7 +428,7 @@ Feature: Searching in a journal
     Scenario Outline: Searching the most recent entry should not show found count
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -1"
+        When we run "alog -1"
         Then the error output should not contain "1 entry found"
 
         Examples: configs
@@ -441,7 +441,7 @@ Feature: Searching in a journal
     Scenario Outline: Searching for more entries than are in the journal should show found count
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -4"
+        When we run "alog -4"
         Then the error output should contain "3 entries found"
 
         Examples: configs

@@ -1,85 +1,42 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
+Copyright © 2025 a-log contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
-<p align="center">
-<a href="https://jrnl.sh">
-<img align="center" src="https://raw.githubusercontent.com/jrnl-org/jrnl/develop/docs_theme/assets/readme-header.png"/>
-</a>
-</p>
+# a-log
 
-jrnl
- [![Testing](https://github.com/jrnl-org/jrnl/workflows/Testing/badge.svg)](https://github.com/jrnl-org/jrnl/actions?query=workflow%3ATesting)
- [![Downloads](https://pepy.tech/badge/jrnl)](https://pepy.tech/project/jrnl)
- [![Version](http://img.shields.io/pypi/v/jrnl.svg?style=flat)](https://pypi.python.org/pypi/jrnl/)
- [![Homebrew](https://img.shields.io/homebrew/v/jrnl?style=flat-square)](https://formulae.brew.sh/formula/jrnl)
- [![Gitter](https://img.shields.io/gitter/room/jrnl-org/jrnl)](https://gitter.im/jrnl-org/jrnl)
- [![Changelog](https://img.shields.io/badge/changelog-on%20github-green)](https://github.com/jrnl-org/jrnl/blob/develop/CHANGELOG.md)
-====
+**a-log** (agent log) is a command-line journal built for AI agents. It is a fork of [jrnl](https://github.com/jrnl-org/jrnl), extended with semantic search and designed to give agents a persistent, searchable memory.
 
-_To get help, [submit an issue](https://github.com/jrnl-org/jrnl/issues/new/choose) on
-GitHub._
+## Features
 
-`jrnl` is a simple journal application for the command line.
+- **Semantic search** — find entries by meaning, not just keywords
+- Plain-text, human-readable journal files
+- Timestamp-aware entry parsing
+- AES encryption support
+- External editor integration
 
-You can use it to easily create, search, and view journal entries. Journals are
-stored as human-readable plain text, and can also be encrypted using  [AES
-encryption](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
+## Quick Start
 
-## In a Nutshell
+Create a new entry:
 
-To make a new entry, just enter
-
-``` sh
-jrnl yesterday: Called in sick. Used the time to clean the house and write my
-book.
+```sh
+alog yesterday: Refactored the authentication module. Moved token validation into middleware.
 ```
 
-`yesterday:` is  interpreted by `jrnl` as a timestamp. Everything until the
-first sentence ending (either `.`, `?`, or `!`) is interpreted as the title, and
-the rest as the body. In your journal file, the result will look like this:
+Search by meaning:
 
-    [2012-03-29 09:00] Called in sick.
-    Used the time to clean the house and write my book.
+```sh
+alog --semantic "auth changes"
+```
 
-If you just call `jrnl`, you will be prompted to compose your entry - but you
-can also configure _jrnl_ to use your external editor.
+Everything before the first sentence-ending punctuation (`.`, `?`, `!`) is the title; the rest is the body. In your journal file, the result looks like:
 
-For more information, please read the
-[documentation](https://jrnl.sh).
+    [2025-06-15 09:00] Refactored the authentication module.
+    Moved token validation into middleware.
 
-## Contributors
+If you just call `alog` with no arguments, you will be prompted to compose your entry.
 
-### Maintainers
+## Origin
 
-Our maintainers help keep the lights on for the project:
-
- * Jonathan Wren ([wren](https://github.com/wren))
- * Micah Ellison ([micahellison](https://github.com/micahellison))
-
-Please thank them if you like `jrnl`!
-
-### Code Contributors
-
-This project is made with love by the many fabulous people who have contributed.
-`jrnl` couldn't exist without each and every one of you!
-
-<a href="https://github.com/jrnl-org/jrnl/graphs/contributors"><img
-src="https://opencollective.com/jrnl/contributors.svg?width=890&button=false"
-/></a>
-
-If you'd also like to help make `jrnl` better, please see our [contributing
-documentation](docs/contributing.md).
-
-### Financial Backers
-
-Another way show support is through direct financial contributions. These funds
-go to covering our costs, and are a quick way to show your appreciation for
-`jrnl`.
-
-[Become a financial contributor](https://opencollective.com/jrnl/contribute)
-and help us sustain our community.
-
-<a href="https://opencollective.com/jrnl"><img
-src="https://opencollective.com/jrnl/individuals.svg?width=890"></a>
+a-log is a fork of [jrnl](https://jrnl.sh) by Jonathan Wren, Micah Ellison, and [many contributors](https://github.com/jrnl-org/jrnl/graphs/contributors). It retains full compatibility with jrnl's journal format while adding agent-oriented capabilities like semantic indexing and search.

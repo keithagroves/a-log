@@ -1,11 +1,11 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import pytest
 from colorama import Fore
 from colorama import Style
 
-from jrnl.color import colorize
+from alog.color import colorize
 
 
 @pytest.fixture()

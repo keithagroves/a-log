@@ -47,7 +47,11 @@ env*/
 venv*/
 
 # Semantic search index
+*.alog_semantic.db
 *.jrnl_semantic.db
+
+# Journal data
+myjrnl
 
 # Editor and IDE specific files
 #  Since contributors may want to user a variety of development tools it is 

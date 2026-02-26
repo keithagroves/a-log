@@ -1,5 +1,5 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
@@ -7,18 +7,18 @@ License: https://www.gnu.org/licenses/gpl-3.0.html
 
 ## Installation
 
-The easiest way to install `jrnl` is using
+The easiest way to install `alog` is using
 [pipx](https://pipx.pypa.io/stable/installation/)
 with [Python](https://www.python.org/) 3.10+:
 
 ``` sh
-pipx install jrnl
+pipx install alog
 ```
 
 !!! tip
-     Do not use `sudo` while installing `jrnl`. This may lead to path issues.
+     Do not use `sudo` while installing `alog`. This may lead to path issues.
 
-The first time you run `jrnl` you will be asked where your journal file
+The first time you run `alog` you will be asked where your journal file
 should be created and whether you wish to encrypt it.
 
 ## Quickstart
@@ -26,7 +26,7 @@ should be created and whether you wish to encrypt it.
 To make a new entry, just type
 
 ``` text
-jrnl yesterday: Called in sick. Used the time to clean, and spent 4h on writing my book.
+alog yesterday: Called in sick. Used the time to clean, and spent 4h on writing my book.
 ```
 
 and hit return. `yesterday:` will be interpreted as a time stamp.
@@ -39,5 +39,5 @@ look like this:
 Used the time to clean the house and spent 4h on writing my book.
 ```
 
-If you just call `jrnl`, you will be prompted to compose your entry -
-but you can also [configure](advanced.md) *jrnl* to use your external editor.
+If you just call `alog`, you will be prompted to compose your entry -
+but you can also [configure](advanced.md) *alog* to use your external editor.

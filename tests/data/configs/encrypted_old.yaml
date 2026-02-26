@@ -4,7 +4,7 @@ editor: ''
 encrypt: true
 highlight: true
 journals:
-  default: features/journals/encrypted_jrnl1-9-5.journal
+  default: features/journals/encrypted_alog1-9-5.journal
 linewrap: 80
 tagsymbols: '@'
 timeformat: '%Y-%m-%d %H:%M'

@@ -24,7 +24,7 @@
 **Fixed bugs:**
 
 - poetry warning -  "poetry.dev-dependencies" section is deprecated [\#1975](https://github.com/jrnl-org/jrnl/issues/1975)
-- Homebrew autobump error on jrnl release [\#1961](https://github.com/jrnl-org/jrnl/issues/1961)
+- Homebrew autobump error on alog release [\#1961](https://github.com/jrnl-org/jrnl/issues/1961)
 
 **Build:**
 
@@ -173,7 +173,7 @@
 - Update dependency tzlocal to v5.2 [\#1814](https://github.com/jrnl-org/jrnl/pull/1814) ([renovate[bot]](https://github.com/apps/renovate))
 
 **Special thanks:**
-- jrnl uses UTC instead of local time for entries in WSL/Ubuntu [\#1607](https://github.com/jrnl-org/jrnl/issues/1607) investigated and reported upstream by [giuseppedandrea](https://github.com/giuseppedandrea)
+- alog uses UTC instead of local time for entries in WSL/Ubuntu [\#1607](https://github.com/jrnl-org/jrnl/issues/1607) investigated and reported upstream by [giuseppedandrea](https://github.com/giuseppedandrea)
 
 ## [v4.0.1](https://pypi.org/project/jrnl/v4.0.1/) (2023-06-20)
 
@@ -181,7 +181,7 @@
 
 **Fixed bugs:**
 
-- jrnl crashes when running `jrnl --list --format json` and `jrnl --list --format yaml` [\#1737](https://github.com/jrnl-org/jrnl/issues/1737)
+- alog crashes when running `alog --list --format json` and `alog --list --format yaml` [\#1737](https://github.com/jrnl-org/jrnl/issues/1737)
 - Refactor --template code [\#1711](https://github.com/jrnl-org/jrnl/pull/1711) ([micahellison](https://github.com/micahellison))
 
 **Build:**
@@ -216,10 +216,10 @@
 **Implemented enhancements:**
 
 - Add message with config location and docs location when installation is complete [\#1695](https://github.com/jrnl-org/jrnl/pull/1695) ([micahellison](https://github.com/micahellison))
-- Prompt to include colors in config when first running jrnl [\#1687](https://github.com/jrnl-org/jrnl/pull/1687) ([micahellison](https://github.com/micahellison))
+- Prompt to include colors in config when first running alog [\#1687](https://github.com/jrnl-org/jrnl/pull/1687) ([micahellison](https://github.com/micahellison))
 - Add ability to use template with `--template` [\#1667](https://github.com/jrnl-org/jrnl/pull/1667) ([alichtman](https://github.com/alichtman))
 - Search for entries with no tags or stars with `-not -starred` and `-not -tagged` [\#1663](https://github.com/jrnl-org/jrnl/pull/1663) ([cjcon90](https://github.com/cjcon90))
-- Refactor flow for easier access to some files \(avoid things like `jrnl.Journal.Journal` and `jrnl.jrnl` co-existing\) [\#1662](https://github.com/jrnl-org/jrnl/pull/1662) ([wren](https://github.com/wren))
+- Refactor flow for easier access to some files \(avoid things like `alog.Journal.Journal` and `alog.alog` co-existing\) [\#1662](https://github.com/jrnl-org/jrnl/pull/1662) ([wren](https://github.com/wren))
 - Add more type hints [\#1642](https://github.com/jrnl-org/jrnl/pull/1642) ([outa](https://github.com/outa))
 - Add `rich` handler to debug logging [\#1627](https://github.com/jrnl-org/jrnl/pull/1627) ([wren](https://github.com/wren))
 - Rework Encryption to enable future support of other encryption methods [\#1602](https://github.com/jrnl-org/jrnl/pull/1602) ([wren](https://github.com/wren))
@@ -373,7 +373,7 @@
 **Implemented enhancements:**
 
 - Show name of journal when creating a password/encrypting [\#1478](https://github.com/jrnl-org/jrnl/pull/1478) ([jonakeys](https://github.com/jonakeys))
-- Rework how all output and messaging works in jrnl [\#1475](https://github.com/jrnl-org/jrnl/pull/1475) ([wren](https://github.com/wren))
+- Rework how all output and messaging works in alog [\#1475](https://github.com/jrnl-org/jrnl/pull/1475) ([wren](https://github.com/wren))
 - Implement --change-time flag [\#1452](https://github.com/jrnl-org/jrnl/pull/1452) ([richardjs](https://github.com/richardjs))
 - Reformat additional messages and finish centralizing exception handling [\#1424](https://github.com/jrnl-org/jrnl/pull/1424) ([wren](https://github.com/wren))
 - Reformat messages and add new centralized exception handling [\#1417](https://github.com/jrnl-org/jrnl/pull/1417) ([wren](https://github.com/wren))
@@ -385,7 +385,7 @@
 - Create folder if config ends with \(back\)slash [\#1492](https://github.com/jrnl-org/jrnl/pull/1492) ([jonakeys](https://github.com/jonakeys))
 - `-not` search parameter no longer opens editor [\#1490](https://github.com/jrnl-org/jrnl/pull/1490) ([apainintheneck](https://github.com/apainintheneck))
 - Fix TypeError when using debug flag [\#1484](https://github.com/jrnl-org/jrnl/pull/1484) ([jonakeys](https://github.com/jonakeys))
-- Prompt for password change when using 'jrnl --encrypt' on already encrypted journal [\#1477](https://github.com/jrnl-org/jrnl/pull/1477) ([jonakeys](https://github.com/jonakeys))
+- Prompt for password change when using 'alog --encrypt' on already encrypted journal [\#1477](https://github.com/jrnl-org/jrnl/pull/1477) ([jonakeys](https://github.com/jonakeys))
 - Always expand all paths \(journals, templates, etc\) [\#1468](https://github.com/jrnl-org/jrnl/pull/1468) ([apainintheneck](https://github.com/apainintheneck))
 - The `-not` option with no arguments now outputs error instead of stack trace [\#1466](https://github.com/jrnl-org/jrnl/pull/1466) ([apainintheneck](https://github.com/apainintheneck))
 - Give a proper message when trying to use an empty config file [\#1461](https://github.com/jrnl-org/jrnl/pull/1461) ([jonakeys](https://github.com/jonakeys))
@@ -396,7 +396,7 @@
 
 - Pin `pytest-bdd` to \<6.0 to temporarily avoid breaking changes [\#1536](https://github.com/jrnl-org/jrnl/pull/1536) ([wren](https://github.com/wren))
 - Reduce difference between local and CI environments [\#1518](https://github.com/jrnl-org/jrnl/pull/1518) ([wren](https://github.com/wren))
-- Add bdd tests for jrnl installation [\#1513](https://github.com/jrnl-org/jrnl/pull/1513) ([apainintheneck](https://github.com/apainintheneck))
+- Add bdd tests for alog installation [\#1513](https://github.com/jrnl-org/jrnl/pull/1513) ([apainintheneck](https://github.com/apainintheneck))
 - Stop hardcoding bot info in changelog pipeline [\#1506](https://github.com/jrnl-org/jrnl/pull/1506) ([wren](https://github.com/wren))
 - Fix Poetry caching for accessibility tests [\#1505](https://github.com/jrnl-org/jrnl/pull/1505) ([wren](https://github.com/wren))
 - Implement Tox for testing [\#1504](https://github.com/jrnl-org/jrnl/pull/1504) ([wren](https://github.com/wren))
@@ -437,7 +437,7 @@
 
 **Implemented enhancements:**
 
-- Add hash as a default tag symbol for new jrnl config file [\#1398](https://github.com/jrnl-org/jrnl/pull/1398) ([micahellison](https://github.com/micahellison))
+- Add hash as a default tag symbol for new alog config file [\#1398](https://github.com/jrnl-org/jrnl/pull/1398) ([micahellison](https://github.com/micahellison))
 - Add --config-file argument to use alternate config file at runtime [\#1290](https://github.com/jrnl-org/jrnl/pull/1290) ([samuelgregorovic](https://github.com/samuelgregorovic))
 
 **Fixed bugs:**
@@ -691,8 +691,8 @@
 
 - Extra error when writing empty entry [\#1048](https://github.com/jrnl-org/jrnl/issues/1048)
 - 'Edit on Github' Button in Documentation not working [\#1039](https://github.com/jrnl-org/jrnl/issues/1039)
-- Decrypt jrnl file in dropbox on another machine fails  [\#1019](https://github.com/jrnl-org/jrnl/issues/1019)
-- Listing jrnl entries by tag for non default journal seem to not work as expected. [\#875](https://github.com/jrnl-org/jrnl/issues/875)
+- Decrypt alog file in dropbox on another machine fails  [\#1019](https://github.com/jrnl-org/jrnl/issues/1019)
+- Listing alog entries by tag for non default journal seem to not work as expected. [\#875](https://github.com/jrnl-org/jrnl/issues/875)
 - -and parameter seems to only work for the default journal [\#520](https://github.com/jrnl-org/jrnl/issues/520)
 - Disable logging by default [\#1053](https://github.com/jrnl-org/jrnl/pull/1053) ([wren](https://github.com/wren))
 - Partial refactor of cli.py \(mainly help screen and arg parsing\) [\#991](https://github.com/jrnl-org/jrnl/pull/991) ([wren](https://github.com/wren))
@@ -754,7 +754,7 @@
 
 **Implemented enhancements:**
 
-- Speed up jrnl by 10%, improve slow imports [\#959](https://github.com/jrnl-org/jrnl/pull/959) ([wotgl](https://github.com/wotgl))
+- Speed up alog by 10%, improve slow imports [\#959](https://github.com/jrnl-org/jrnl/pull/959) ([wotgl](https://github.com/wotgl))
 
 **Fixed bugs:**
 
@@ -888,7 +888,7 @@
 
 **Build:**
 
-- Fix issue where jrnl would always out 'source' for version, fix Poetry config to build and publish properly [\#820](https://github.com/jrnl-org/jrnl/pull/820) ([wren](https://github.com/wren))
+- Fix issue where alog would always out 'source' for version, fix Poetry config to build and publish properly [\#820](https://github.com/jrnl-org/jrnl/pull/820) ([wren](https://github.com/wren))
 - Unpin poetry [\#808](https://github.com/jrnl-org/jrnl/pull/808) ([wren](https://github.com/wren))
 - Fix all skipped tests on Travis Windows builds by preserving newlines [\#823](https://github.com/jrnl-org/jrnl/pull/823) ([micahellison](https://github.com/micahellison))
 - Change PyPI auth method in build pipeline [\#807](https://github.com/jrnl-org/jrnl/pull/807) ([wren](https://github.com/wren))
@@ -903,7 +903,7 @@
 
 **Updated documentation:**
 
-- Explain how fish can be configured to exclude jrnl commands from history by default [\#809](https://github.com/jrnl-org/jrnl/pull/809) ([aureooms](https://github.com/aureooms))
+- Explain how fish can be configured to exclude alog commands from history by default [\#809](https://github.com/jrnl-org/jrnl/pull/809) ([aureooms](https://github.com/aureooms))
 - Remove merge marker in recipes.md [\#782](https://github.com/jrnl-org/jrnl/pull/782) ([markphelps](https://github.com/markphelps))
 - Fix merge conflict left-over [\#767](https://github.com/jrnl-org/jrnl/pull/767) ([thejspr](https://github.com/thejspr))
 - Display header in docs on mobile devices [\#763](https://github.com/jrnl-org/jrnl/pull/763) ([maebert](https://github.com/maebert))
@@ -920,7 +920,7 @@
 **Fixed bugs:**
 
 - Prevent readline usage on Windows, which was causing Active Python crashes on install [\#751](https://github.com/jrnl-org/jrnl/pull/751) ([micahellison](https://github.com/micahellison))
-- Exit jrnl if no text entered into editor [\#744](https://github.com/jrnl-org/jrnl/pull/744) ([alichtman](https://github.com/alichtman))
+- Exit alog if no text entered into editor [\#744](https://github.com/jrnl-org/jrnl/pull/744) ([alichtman](https://github.com/alichtman))
 - Fix crash when no keyring backend available [\#699](https://github.com/jrnl-org/jrnl/pull/699) ([pspeter](https://github.com/pspeter))
 - Fix parsing Journals using a little-endian date format [\#694](https://github.com/jrnl-org/jrnl/pull/694) ([pspeter](https://github.com/pspeter))
 
@@ -976,7 +976,7 @@
 **Implemented enhancements:**
 - Change cryptographic backend from PyCrypto to cryptography.io
 - Config now respects XDG conventions and may move accordingly
-- Config name changed from `journals.jrnl_name.journal` to `journals.jrnl_name.path`
+- Config name changed from `journals.alog_name.journal` to `journals.alog_name.path`
 
 **Fixed bugs:**
 
@@ -1001,7 +1001,7 @@
 
 - Mention lack of Day One support and relevant history in readme [\#608](https://github.com/jrnl-org/jrnl/pull/608) ([micahellison](https://github.com/micahellison))
 - Add a code of conduct file \(rather than adding to contributing\) [\#604](https://github.com/jrnl-org/jrnl/pull/604) ([wren](https://github.com/wren))
-- Update docs to reflect merging jrnl-plus fork back upstream [\#601](https://github.com/jrnl-org/jrnl/pull/601) ([micahellison](https://github.com/micahellison))
+- Update docs to reflect merging alog-plus fork back upstream [\#601](https://github.com/jrnl-org/jrnl/pull/601) ([micahellison](https://github.com/micahellison))
 - Add instructions for VS Code [\#544](https://github.com/jrnl-org/jrnl/pull/544) ([emceeaich](https://github.com/emceeaich))
 
 ## v1.9 (2014-07-21)
@@ -1027,7 +1027,7 @@
 ## v1.7 (2013-12-22)
 
 * __1.7.22__ Fixed an issue with writing files when exporting entries containing non-ascii characters.
-* __1.7.21__ jrnl now uses PKCS#7 padding.
+* __1.7.21__ alog now uses PKCS#7 padding.
 * __1.7.20__ Minor fixes when parsing DayOne journals
 * __1.7.19__ Creates full path to journal during installation if it doesn't exist yet
 * __1.7.18__ Small update to parsing regex
@@ -1039,7 +1039,7 @@
 * __1.7.12__ Fixes a bug where filtering by tags didn't work for DayOne journals
 * __1.7.11__ `-ls` will list all available journals (Thanks @jtan189)
 * __1.7.10__ Supports `-3` as a shortcut for `-n 3` and updates to tzlocal 1.1
-* __1.7.9__ Fix a logic bug so that jrnl -h and jrnl -v are possible even if jrnl not configured yet.
+* __1.7.9__ Fix a logic bug so that alog -h and alog -v are possible even if alog not configured yet.
 * __1.7.8__ Upgrade to parsedatetime 1.2
 * __1.7.7__ Cleaned up imports, better unicode support
 * __1.7.6__ Python 3 port for slugify
@@ -1047,18 +1047,18 @@
 * __1.7.3__ Touches temporary files before opening them to allow more external editors.
 * __1.7.2__ Dateutil added to requirements.
 * __1.7.1__ Fixes issues with parsing time information in entries.
-* __1.7.0__ Edit encrypted or DayOne journals with `jrnl --edit`.
+* __1.7.0__ Edit encrypted or DayOne journals with `alog --edit`.
 
 
 ## v1.6 (2013-11-05)
 
-* __1.6.6__ -v prints the current version, also better strings for windows users. Furthermore, jrnl/jrnl.py moved to jrnl/cli.py
+* __1.6.6__ -v prints the current version, also better strings for windows users. Furthermore, alog/alog.py moved to alog/cli.py
 * __1.6.5__ Allows composing multi-line entries on the command line or importing files
 * __1.6.4__ Fixed a bug that caused creating encrypted journals to fail
 * __1.6.3__ New, pretty, _useful_ documentation!
 * __1.6.2__ Starring entries now works for plain-text journals too!
 * __1.6.1__ Attempts to fix broken config files automatically
-* __1.6.0__ Passwords are now saved in the key-chain. The `password` field in `.jrnl_config` is soft-deprecated.
+* __1.6.0__ Passwords are now saved in the key-chain. The `password` field in `.alog_config` is soft-deprecated.
 
 ## v1.5 (2013-08-06)
 
@@ -1069,16 +1069,16 @@
 * __1.5.3__ Fixed: DayOne integration with older DayOne Journals
 * __1.5.2__ Soft-deprecated `-to` for filtering by time and introduces `-until` instead.
 * __1.5.1__ Fixed: Fixed a bug introduced in 1.5.0 that caused the entire journal to be printed after composing an entry
-* __1.5.0__ Exporting, encrypting and displaying tags now takes your filter options into account. So you could export everything before May 2012: `jrnl -to 'may 2012' --export json`. Or encrypt all entries tagged with `@work` into a new journal: `jrnl @work --encrypt work_journal.txt`. Or display all tags of posts where Bob is also tagged: `jrnl @bob --tags`
+* __1.5.0__ Exporting, encrypting and displaying tags now takes your filter options into account. So you could export everything before May 2012: `alog -to 'may 2012' --export json`. Or encrypt all entries tagged with `@work` into a new journal: `alog @work --encrypt work_journal.txt`. Or display all tags of posts where Bob is also tagged: `alog @bob --tags`
 
 ## v1.4 (2013-07-22)
 
 * __1.4.2__ Fixed: Tagging works again
-* __1.4.0__ Unifies encryption between Python 2 and 3. If you have problems reading encrypted journals afterwards, first decrypt your journal with the __old__ jrnl version (install with `pip install jrnl==1.3.1`, then `jrnl --decrypt`), upgrade jrnl (`pip install jrnl --upgrade`) and encrypt it again (`jrnl --encrypt`).
+* __1.4.0__ Unifies encryption between Python 2 and 3. If you have problems reading encrypted journals afterwards, first decrypt your journal with the __old__ alog version (install with `pip install alog==1.3.1`, then `alog --decrypt`), upgrade alog (`pip install alog --upgrade`) and encrypt it again (`alog --encrypt`).
 
 ## v1.3 (2013-07-17)
 
-* __1.3.2__ Everything that is not direct output of jrnl will be written stderr to improve integration
+* __1.3.2__ Everything that is not direct output of alog will be written stderr to improve integration
 * __1.3.0__ Export to multiple files
 * __1.3.0__ Feature to export to given output file
 
@@ -1114,8 +1114,8 @@
 * __1.0.0__
     * Integrates seamlessly with DayOne
     * Each journal can have individual settings
-    * Fixed: A bug where jrnl would not go into compose mode
-    * Fixed: A bug where jrnl would not add entries without timestamp
+    * Fixed: A bug where alog would not go into compose mode
+    * Fixed: A bug where alog would not add entries without timestamp
     * Fixed: Support for parsedatetime 1.x
 
 ## v0.3 (2012-05-24)
@@ -1129,7 +1129,7 @@
 * __0.3.0__
     * Fixed: Dates such as "May 3" will now be interpreted as being in the past if the current day is at least 28 days in the future
     * Fixed: Bug where composed entry is lost when the journal file fails to load
-    * Changed directory structure and install scripts (removing the necessity to make an alias from `jrnl` to `jrnl.py`)
+    * Changed directory structure and install scripts (removing the necessity to make an alias from `alog` to `alog.py`)
 
 ## v0.2 (2012-04-16)
 
@@ -1140,11 +1140,11 @@
     * Adds a `-short` option that will only display the titles of entries (or, when filtering by tags, the context of the tag)
     * Adds tag export
     * Adds coloured highlight of tags (by default, highlights all tags - when filtering by tags, only highlights search tags)
-    * `.jrnl_config` will get automatically updated when updating jrnl to a new version
+    * `.alog_config` will get automatically updated when updating alog to a new version
 * __0.2.2__
     * Adds --encrypt and --decrypt to encrypt / decrypt existing journal files
     * Adds markdown export (kudos to dedan)
-* __0.2.1__ Submitted to [PyPi](http://pypi.python.org/pypi/jrnl/0.2.1).
+* __0.2.1__ Submitted to [PyPi](http://pypi.python.org/pypi/alog/0.2.1).
 * __0.2.0__
     * Encrypts using CBC
     * Fixed: `key` has been renamed to `password` in config to avoid confusion. (The key use to encrypt and decrypt a journal is the SHA256-hash of the password.)

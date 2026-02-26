@@ -1,24 +1,24 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 from argparse import Namespace
 
 import pytest
 
-from jrnl.override import _convert_dots_to_list
-from jrnl.override import _get_config_node
-from jrnl.override import _get_key_and_value_from_pair
-from jrnl.override import _recursively_apply
-from jrnl.override import apply_overrides
+from alog.override import _convert_dots_to_list
+from alog.override import _get_config_node
+from alog.override import _get_key_and_value_from_pair
+from alog.override import _recursively_apply
+from alog.override import apply_overrides
 
 
 @pytest.fixture()
 def minimal_config():
     cfg = {
         "colors": {"body": "red", "date": "green"},
-        "default": "/tmp/journal.jrnl",
+        "default": "/tmp/journal.alog",
         "editor": "vim",
-        "journals": {"default": "/tmp/journals/journal.jrnl"},
+        "journals": {"default": "/tmp/journals/journal.alog"},
     }
     return cfg
 
@@ -69,7 +69,7 @@ def test_multiple_overrides(minimal_config):
         "config_override": [
             ["colors.title", "magenta"],
             ["editor", "nano"],
-            ["journals.burner", "/tmp/journals/burner.jrnl"],
+            ["journals.burner", "/tmp/journals/burner.alog"],
         ]
     }
 
@@ -77,7 +77,7 @@ def test_multiple_overrides(minimal_config):
     assert actual["editor"] == "nano"
     assert actual["colors"]["title"] == "magenta"
     assert "burner" in actual["journals"]
-    assert actual["journals"]["burner"] == "/tmp/journals/burner.jrnl"
+    assert actual["journals"]["burner"] == "/tmp/journals/burner.alog"
 
 
 def test_recursively_apply():

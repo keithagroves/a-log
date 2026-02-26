@@ -1,18 +1,18 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
 # Privacy and Security
 
-`jrnl` is designed with privacy and security in mind, but like any other
+`alog` is designed with privacy and security in mind, but like any other
 program there are some limitations to be aware of.
 
 ## Password strength
 
-`jrnl` doesn't enforce password strength requirements. Short or commonly-used
+`alog` doesn't enforce password strength requirements. Short or commonly-used
 passwords can be easily circumvented by someone with basic security skills
-to access to your encrypted `jrnl` file.
+to access to your encrypted `alog` file.
 
 ## Plausible deniability
 
@@ -24,13 +24,13 @@ it through non-technical means.
 
 ## Spying
 
-While `jrnl` can protect against unauthorized access to your journal entries while
+While `alog` can protect against unauthorized access to your journal entries while
 it isn't open, it cannot protect you against an unsafe computer/location.
 For example:
 
 - Someone installs a keylogger, tracking what you type into your journal.
 - Someone watches your screen while you write your entry.
-- Someone installs a backdoor into `jrnl` or poisons your journal into revealing your entries.
+- Someone installs a backdoor into `alog` or poisons your journal into revealing your entries.
 
 ## Saved Passwords
 
@@ -51,29 +51,29 @@ problem in various shells.
 
 ### bash
 
-You can disable history logging for jrnl by adding this line into your
+You can disable history logging for alog by adding this line into your
 `~/.bashrc` file:
 
 ``` sh
-HISTIGNORE="$HISTIGNORE:jrnl *"
+HISTIGNORE="$HISTIGNORE:alog *"
 ```
 
-To delete existing `jrnl` commands from `bash` history, simply delete them from
+To delete existing `alog` commands from `bash` history, simply delete them from
 your bash history file. The default location of this file is `~/.bash_history`,
 but you can run `echo "$HISTFILE"` to find it if needed.  Also, you can run
 `history -c` to delete all commands from your history.
 
 ### zsh
 
-You can disable history logging for jrnl by adding this to your `~/.zshrc`
+You can disable history logging for alog by adding this to your `~/.zshrc`
 file:
 
 ``` sh
 setopt HIST_IGNORE_SPACE
-alias jrnl=" jrnl"
+alias alog=" alog"
 ```
 
-To delete existing `jrnl` commands from `zsh` history, simply remove them from
+To delete existing `alog` commands from `zsh` history, simply remove them from
 your zsh history file. The default location of this file is `~/.zsh_history`,
 but you can run `echo "$HISTFILE"` to find it if needed. Also, you can run
 `history -c` to delete all commands from your history.
@@ -81,14 +81,14 @@ but you can run `echo "$HISTFILE"` to find it if needed. Also, you can run
 ### fish
 
 By default `fish` will not log any command that starts with a space. If you
-want to always run jrnl with a space before it, then you can add this to your
+want to always run alog with a space before it, then you can add this to your
 `~/.config/fish/config.fish` file:
 
 ``` sh
-abbr --add jrnl " jrnl"
+abbr --add alog " alog"
 ```
 
-To delete existing jrnl commands from `fish` history, run `history delete --prefix 'jrnl '`.
+To delete existing alog commands from `fish` history, run `history delete --prefix 'alog '`.
 
 ### Windows Command Prompt
 
@@ -96,19 +96,19 @@ Windows doesn't log history to disk, but it does keep it in your command prompt
 session. Close the command prompt or press `Alt`+`F7` to clear your history
 after journaling.
 
-## Files in transit from editor to jrnl
+## Files in transit from editor to alog
 
-When creating or editing an entry, `jrnl` uses a unencrypted temporary file on
+When creating or editing an entry, `alog` uses a unencrypted temporary file on
 disk in order to give your editor access to your journal. After you close your
-editor, `jrnl` then deletes this temporary file.
+editor, `alog` then deletes this temporary file.
 
 So, if you have saved a journal entry but haven't closed your editor yet, the
 unencrypted temporary remains on your disk. If your computer were to shut off
-during this time, or the `jrnl` process were killed unexpectedly, then the
+during this time, or the `alog` process were killed unexpectedly, then the
 unencrypted temporary file will remain on your disk. You can mitigate this
 issue by only saving with your editor right before closing it. You can also
 manually delete these files from your temporary folder. By default, they
-are named `jrnl*.jrnl`, but if you use a
+are named `alog*.alog`, but if you use a
 [template](reference-config-file.md#template), they will have the same
 extension as the template.
 
@@ -128,7 +128,7 @@ the `workbench.localHistory.enabled` setting in the
 Alternatively, you can disable this feature for specific files by configuring a
 [pattern](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options)
 in the `workbench.localHistory.exclude` setting. To exclude unencrypted temporary files generated
-by `jrnl`, you can set the `**/jrnl*.jrnl` (unless you are using a
+by `alog`, you can set the `**/alog*.alog` (unless you are using a
 [template](reference-config-file.md#template)) pattern for the `workbench.localHistory.exclude` setting
 in the [Settings editor](https://code.visualstudio.com/docs/getstarted/settings#_settings-editor).
 
@@ -156,7 +156,7 @@ be able to recover opened files after an unexpected application close Vim uses
 swap files.
 
 These options as well as other leaky features can be disabled by setting the
-`editor` key in the Jrnl settings like this:
+`editor` key in the Alog settings like this:
 
 ``` yaml
 editor: "vim -c 'set viminfo= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure'"
@@ -168,16 +168,16 @@ ensure that any rogue plugins or other difficult to catch information leaks are
 eliminated. The downside to this is that the editor experience will decrease
 quite a bit.
 
-To instead let Vim automatically detect when a Jrnl file is being edited an
+To instead let Vim automatically detect when a Alog file is being edited an
 autocommand can be used. Place this in your `~/.vimrc`:
 
 ``` vim
-autocmd BufNewFile,BufReadPre *.jrnl setlocal viminfo= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure
+autocmd BufNewFile,BufReadPre *.alog setlocal viminfo= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure
 ```
 
 !!! note
     If you're using a [template](reference-config-file.md#template), you will
-    have to use the template's file extension instead of `.jrnl`.
+    have to use the template's file extension instead of `.alog`.
 
 See `:h <option>` in Vim for more information about the options mentioned.
 
@@ -198,15 +198,15 @@ editor: "nvim -c 'set shada= noswapfile noundofile nobackup nowritebackup noshel
 As for Vim above we can create an autocommand in Vimscript:
 
 ``` vim
-autocmd BufNewFile,BufReadPre *.jrnl setlocal shada= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure
+autocmd BufNewFile,BufReadPre *.alog setlocal shada= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure
 ```
 
 or the same but in Lua:
 
 ``` lua
 vim.api.nvim_create_autocmd( {"BufNewFile","BufReadPre" }, {
-  group = vim.api.nvim_create_augroup("PrivateJrnl", {}),
-  pattern = "*.jrnl",
+  group = vim.api.nvim_create_augroup("PrivateAlog", {}),
+  pattern = "*.alog",
   callback = function()
     vim.o.shada = ""
     vim.o.swapfile = false
@@ -223,7 +223,7 @@ vim.api.nvim_create_autocmd( {"BufNewFile","BufReadPre" }, {
 
 !!! note
     If you're using a [template](reference-config-file.md#template), you will
-    have to use the template's file extension instead of `.jrnl`.
+    have to use the template's file extension instead of `.alog`.
 
 Please see `:h <option>` in Neovim for more information about the options mentioned.
 

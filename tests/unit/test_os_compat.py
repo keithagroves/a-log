@@ -1,13 +1,13 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 from unittest import mock
 
 import pytest
 
-from jrnl.os_compat import on_posix
-from jrnl.os_compat import on_windows
-from jrnl.os_compat import split_args
+from alog.os_compat import on_posix
+from alog.os_compat import on_windows
+from alog.os_compat import split_args
 
 
 @pytest.mark.parametrize(
@@ -30,7 +30,7 @@ from jrnl.os_compat import split_args
 )
 def test_on_windows(systems):
     osname, expected_on_windows = systems[0], systems[1]
-    with mock.patch("jrnl.os_compat.platform", osname):
+    with mock.patch("alog.os_compat.platform", osname):
         assert on_windows() == expected_on_windows
 
 
@@ -54,7 +54,7 @@ def test_on_windows(systems):
 )
 def test_on_posix(systems):
     osname, expected_on_posix = systems[0], systems[1]
-    with mock.patch("jrnl.os_compat.platform", osname):
+    with mock.patch("alog.os_compat.platform", osname):
         assert on_posix() == expected_on_posix
 
 
@@ -71,7 +71,7 @@ def test_on_posix(systems):
 )
 def test_split_args_on_windows(args):
     input_arguments, expected_split_args = args[0], args[1]
-    with mock.patch("jrnl.os_compat.on_windows", lambda: True):
+    with mock.patch("alog.os_compat.on_windows", lambda: True):
         assert split_args(input_arguments) == expected_split_args
 
 
@@ -87,5 +87,5 @@ def test_split_args_on_windows(args):
 )
 def test_split_args_on_not_windows(args):
     input_arguments, expected_split_args = args[0], args[1]
-    with mock.patch("jrnl.os_compat.on_windows", lambda: True):
+    with mock.patch("alog.os_compat.on_windows", lambda: True):
         assert split_args(input_arguments) == expected_split_args

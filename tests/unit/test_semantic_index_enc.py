@@ -1,12 +1,12 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import datetime
 
 import numpy as np
 
-from jrnl.search.crypto import IndexKeyCrypto
-from jrnl.search.index import SemanticIndex
+from alog.search.crypto import IndexKeyCrypto
+from alog.search.index import SemanticIndex
 
 
 def test_encrypted_index_store_and_search_roundtrip():

@@ -6,6 +6,6 @@
 "editor": "",
 "default_minute": 0,
 "highlight": true,
-"journals": {"default": "features/journals/simple_jrnl-1-9-5_little_endian_dates.journal"},
+"journals": {"default": "features/journals/simple_alog-1-9-5_little_endian_dates.journal"},
 "tagsymbols": "@"
 }

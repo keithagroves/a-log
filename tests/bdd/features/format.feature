@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 Feature: Custom formats
@@ -6,7 +6,7 @@ Feature: Custom formats
     Scenario Outline: Short printing via --format flag
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --format short -3"
+        When we run "alog --format short -3"
         Then we should get no error
 
         Examples: configs
@@ -20,7 +20,7 @@ Feature: Custom formats
     Scenario Outline: Pretty Printing aka the Default
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --format pretty -3"
+        When we run "alog --format pretty -3"
         Then we should get no error
 
         Examples: configs
@@ -34,7 +34,7 @@ Feature: Custom formats
     Scenario Outline: JSON format
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --format json"
+        When we run "alog --format json"
         Then we should get no error
         And the output should be valid JSON
         Given we parse the output as JSON
@@ -59,7 +59,7 @@ Feature: Custom formats
 
     Scenario: Exporting dayone to json should include UUID
         Given we use the config "dayone.yaml"
-        When we run "jrnl --export json"
+        When we run "alog --export json"
         Then we should get no error
         And the output should be valid JSON
         Given we parse the output as JSON
@@ -71,7 +71,7 @@ Feature: Custom formats
     Scenario Outline: Printing a journal that has multiline entries with tags
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -n 1 @ipsum"
+        When we run "alog -n 1 @ipsum"
         Then we should get no error
         And the output should be
             """
@@ -107,7 +107,7 @@ Feature: Custom formats
     Scenario Outline: Exporting using filters should only export parts of the journal
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -until 'August 2020' --format json"
+        When we run "alog -until 'August 2020' --format json"
         Then the output should be valid JSON
         Then we should get no error
         And the output should be valid JSON
@@ -177,9 +177,9 @@ Feature: Custom formats
             More stuff
             more stuff again
             """
-        When we run "jrnl --edit -1"
+        When we run "alog --edit -1"
         Then the editor should have been called
-        When we run "jrnl -1 --export markdown"
+        When we run "alog -1 --export markdown"
         Then the output should be
             """
             # 2021
@@ -235,7 +235,7 @@ Feature: Custom formats
     Scenario Outline: Exporting to XML
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --export xml"
+        When we run "alog --export xml"
         Then the output should be a valid XML string
         And "entries" in the xml output should have 3 elements
         And "tags" in the xml output should contain
@@ -257,7 +257,7 @@ Feature: Custom formats
     Scenario: Exporting to XML single
         Given we use the config "tags.yaml"
         And we use the password "test" if prompted
-        When we run "jrnl --export xml"
+        When we run "alog --export xml"
         Then the output should be valid XML
         Given we parse the output as XML
         Then "entries" in the parsed output should have 2 elements
@@ -272,7 +272,7 @@ Feature: Custom formats
     Scenario Outline: Exporting tags
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --export tags"
+        When we run "alog --export tags"
         Then the output should be
             """
             @tagtwo              : 2
@@ -292,7 +292,7 @@ Feature: Custom formats
     Scenario Outline: Export fancy with small linewrap
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --config-override linewrap 35 --format fancy -3"
+        When we run "alog --config-override linewrap 35 --format fancy -3"
         Then we should get no error
         And the output should be 35 columns wide
 
@@ -309,7 +309,7 @@ Feature: Custom formats
         # Needs better emoji support
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --export fancy"
+        When we run "alog --export fancy"
         Then the output should be
             """
             ┎──────────────────────────────────────────────────────────────╮2020-08-29 11:11
@@ -408,7 +408,7 @@ Feature: Custom formats
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
         And we create a cache directory
-        When we run "jrnl --format yaml --file {cache_dir}"
+        When we run "alog --format yaml --file {cache_dir}"
         Then the cache directory should contain the files
             """
             2020-08-29_entry-the-first.md
@@ -455,7 +455,7 @@ Feature: Custom formats
     Scenario Outline: Exporting YAML to nonexistent directory leads to user-friendly error with no traceback
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --export yaml --file nonexistent_dir"
+        When we run "alog --export yaml --file nonexistent_dir"
         Then the output should contain "YAML export must be to a directory"
         And the output should not contain "Traceback"
 
@@ -473,7 +473,7 @@ Feature: Custom formats
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
         And we create a cache directory
-        When we run "jrnl --export yaml -o {cache_dir}"
+        When we run "alog --export yaml -o {cache_dir}"
         Then the cache should contain the files
             """
             2020-08-29_entry-the-first.md
@@ -511,13 +511,13 @@ Feature: Custom formats
     Scenario: Empty DayOne entry bodies should not error
         # https://github.com/jrnl-org/jrnl/issues/780
         Given we use the config "bug780.yaml"
-        When we run "jrnl --short"
+        When we run "alog --short"
         Then we should get no error
 
     Scenario Outline: --short displays the short version of entries (only the title)
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -on 2020-08-31 --short"
+        When we run "alog -on 2020-08-31 --short"
         Then the output should be "2020-08-31 14:32 A second entry in what I hope to be a long series."
 
         Examples: configs
@@ -530,7 +530,7 @@ Feature: Custom formats
     Scenario Outline: -s displays the short version of entries (only the title)
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl -on 2020-08-31 -s"
+        When we run "alog -on 2020-08-31 -s"
         Then the output should be "2020-08-31 14:32 A second entry in what I hope to be a long series."
 
         Examples: configs
@@ -542,7 +542,7 @@ Feature: Custom formats
 
     Scenario: Markdown Support from config file
         Given we use the config "format_md.yaml"
-        When we run "jrnl -n 1"
+        When we run "alog -n 1"
         Then the output should be
             """
             # 2013
@@ -556,7 +556,7 @@ Feature: Custom formats
 
     Scenario: Text Formatter from config file
         Given we use the config "format_text.yaml"
-        When we run "jrnl -n 1"
+        When we run "alog -n 1"
         Then the output should be
             """
             [2013-06-10 15:40] Life is good.
@@ -567,8 +567,8 @@ Feature: Custom formats
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
         And we create a cache directory
-        When we run "jrnl 2020-11-21: Первая"
-        When we run "jrnl --format md --file {cache_dir} -on 2020-11-21"
+        When we run "alog 2020-11-21: Первая"
+        When we run "alog --format md --file {cache_dir} -on 2020-11-21"
         Then the cache should contain the files
             """
             2020-11-21_первая.md
@@ -584,8 +584,8 @@ Feature: Custom formats
     Scenario Outline: Export date counts
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl 2020-08-31 01:01: Hi."
-        And we run "jrnl --format dates"
+        When we run "alog 2020-08-31 01:01: Hi."
+        And we run "alog --format dates"
         Then the output should be
             """
             2020-08-29, 1
@@ -604,9 +604,9 @@ Feature: Custom formats
     Scenario Outline: display_format short and pretty do not crash if specified as config values
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --config-override display_format short -1"
+        When we run "alog --config-override display_format short -1"
         Then we should get no error
-        When we run "jrnl --config-override display_format pretty -1"
+        When we run "alog --config-override display_format pretty -1"
         Then we should get no error
 
         Examples: configs
@@ -619,35 +619,35 @@ Feature: Custom formats
     Scenario: Export entries in markdown format with a title longer than max file name length.
         Given we use the config "basic_onefile.yaml"
         And we create a cache directory
-        When we run "jrnl 2022-07-31 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Laoreet id donec ultrices tincidunt arcu Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin Ut pharetra sit amet aliquam id diam maecenas Habitasse platea dictumst quisque sagittis Aliquam purus sit amet luctus venenatis lectus magna Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat Diam vel quam elementum pulvinar etiam non Odio ut enim blandit volutpat maecenas volutpat Lacus vestibulum sed arcu non odio euismod lacinia at quis. Pretium nibh ipsum consequat nisl."
-        When we run "jrnl 2022-07-31 Magna fermentum iaculis eu non diam phasellus Non pulvinar neque laoreet suspendisse interdum consectetur libero id Scelerisque felis imperdiet proin fermentum leo Eu ultrices vitae auctor eu augue ut lectus Bibendum arcu vitae elementum curabitur vitae nunc sed Tincidunt tortor aliquam nulla facilisi cras fermentum Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel Non sodales neque sodales ut Enim nulla aliquet porttitor lacus luctus accumsan Volutpat blandit aliquam etiam erat velit scelerisque in dictum non Egestas fringilla phasellus faucibus scelerisque At risus viverra adipiscing at in tellus integer feugiat scelerisque Eget velit aliquet sagittis id consectetur purus ut Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis Lacus vestibulum sed arcu non odio euismod lacinia at Elit pellentesque habitant morbi tristique Vestibulum lorem sed risus ultricies Integer eget aliquet nibh praesent tristique magna sit amet purus Quisque id diam vel quam elementum pulvinar etiam non quam Nisi scelerisque eu ultrices vitae auctor eu augue. Malesuada fames ac turpis egestas integer eget aliquet."
-        When we run "jrnl --format markdown --file {cache_dir}"
+        When we run "alog 2022-07-31 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Laoreet id donec ultrices tincidunt arcu Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin Ut pharetra sit amet aliquam id diam maecenas Habitasse platea dictumst quisque sagittis Aliquam purus sit amet luctus venenatis lectus magna Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat Diam vel quam elementum pulvinar etiam non Odio ut enim blandit volutpat maecenas volutpat Lacus vestibulum sed arcu non odio euismod lacinia at quis. Pretium nibh ipsum consequat nisl."
+        When we run "alog 2022-07-31 Magna fermentum iaculis eu non diam phasellus Non pulvinar neque laoreet suspendisse interdum consectetur libero id Scelerisque felis imperdiet proin fermentum leo Eu ultrices vitae auctor eu augue ut lectus Bibendum arcu vitae elementum curabitur vitae nunc sed Tincidunt tortor aliquam nulla facilisi cras fermentum Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel Non sodales neque sodales ut Enim nulla aliquet porttitor lacus luctus accumsan Volutpat blandit aliquam etiam erat velit scelerisque in dictum non Egestas fringilla phasellus faucibus scelerisque At risus viverra adipiscing at in tellus integer feugiat scelerisque Eget velit aliquet sagittis id consectetur purus ut Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis Lacus vestibulum sed arcu non odio euismod lacinia at Elit pellentesque habitant morbi tristique Vestibulum lorem sed risus ultricies Integer eget aliquet nibh praesent tristique magna sit amet purus Quisque id diam vel quam elementum pulvinar etiam non quam Nisi scelerisque eu ultrices vitae auctor eu augue. Malesuada fames ac turpis egestas integer eget aliquet."
+        When we run "alog --format markdown --file {cache_dir}"
         Then the cache directory should contain 5 files
         And we should get no error
 
     Scenario: Export entries in text format with a title longer than max file name length.
         Given we use the config "basic_onefile.yaml"
         And we create a cache directory
-        When we run "jrnl 2022-07-31 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Laoreet id donec ultrices tincidunt arcu Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin Ut pharetra sit amet aliquam id diam maecenas Habitasse platea dictumst quisque sagittis Aliquam purus sit amet luctus venenatis lectus magna Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat Diam vel quam elementum pulvinar etiam non Odio ut enim blandit volutpat maecenas volutpat Lacus vestibulum sed arcu non odio euismod lacinia at quis. Pretium nibh ipsum consequat nisl."
-        When we run "jrnl 2022-07-31 Magna fermentum iaculis eu non diam phasellus Non pulvinar neque laoreet suspendisse interdum consectetur libero id Scelerisque felis imperdiet proin fermentum leo Eu ultrices vitae auctor eu augue ut lectus Bibendum arcu vitae elementum curabitur vitae nunc sed Tincidunt tortor aliquam nulla facilisi cras fermentum Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel Non sodales neque sodales ut Enim nulla aliquet porttitor lacus luctus accumsan Volutpat blandit aliquam etiam erat velit scelerisque in dictum non Egestas fringilla phasellus faucibus scelerisque At risus viverra adipiscing at in tellus integer feugiat scelerisque Eget velit aliquet sagittis id consectetur purus ut Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis Lacus vestibulum sed arcu non odio euismod lacinia at Elit pellentesque habitant morbi tristique Vestibulum lorem sed risus ultricies Integer eget aliquet nibh praesent tristique magna sit amet purus Quisque id diam vel quam elementum pulvinar etiam non quam Nisi scelerisque eu ultrices vitae auctor eu augue. Malesuada fames ac turpis egestas integer eget aliquet."
-        When we run "jrnl --format text --file {cache_dir}"
+        When we run "alog 2022-07-31 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Laoreet id donec ultrices tincidunt arcu Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin Ut pharetra sit amet aliquam id diam maecenas Habitasse platea dictumst quisque sagittis Aliquam purus sit amet luctus venenatis lectus magna Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat Diam vel quam elementum pulvinar etiam non Odio ut enim blandit volutpat maecenas volutpat Lacus vestibulum sed arcu non odio euismod lacinia at quis. Pretium nibh ipsum consequat nisl."
+        When we run "alog 2022-07-31 Magna fermentum iaculis eu non diam phasellus Non pulvinar neque laoreet suspendisse interdum consectetur libero id Scelerisque felis imperdiet proin fermentum leo Eu ultrices vitae auctor eu augue ut lectus Bibendum arcu vitae elementum curabitur vitae nunc sed Tincidunt tortor aliquam nulla facilisi cras fermentum Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel Non sodales neque sodales ut Enim nulla aliquet porttitor lacus luctus accumsan Volutpat blandit aliquam etiam erat velit scelerisque in dictum non Egestas fringilla phasellus faucibus scelerisque At risus viverra adipiscing at in tellus integer feugiat scelerisque Eget velit aliquet sagittis id consectetur purus ut Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis Lacus vestibulum sed arcu non odio euismod lacinia at Elit pellentesque habitant morbi tristique Vestibulum lorem sed risus ultricies Integer eget aliquet nibh praesent tristique magna sit amet purus Quisque id diam vel quam elementum pulvinar etiam non quam Nisi scelerisque eu ultrices vitae auctor eu augue. Malesuada fames ac turpis egestas integer eget aliquet."
+        When we run "alog --format text --file {cache_dir}"
         Then the cache directory should contain 5 files
         And we should get no error
 
     Scenario: Export journal list to multiple formats.
         Given we use the config "basic_onefile.yaml"
-        When we run "jrnl --list"
+        When we run "alog --list"
         Then the output should match
             """
             Journals defined in config \(.+basic_onefile\.yaml\)
              \* default -> features/journals/basic_onefile\.journal
             """
-        When we run "jrnl --list --format json"
+        When we run "alog --list --format json"
         Then the output should match
             """
             {"config_path": ".+basic_onefile\.yaml", "journals": {"default": "features/journals/basic_onefile\.journal"}}
             """
-        When we run "jrnl --list --format yaml"
+        When we run "alog --list --format yaml"
         Then the output should match
             """
             config_path: .+basic_onefile\.yaml
@@ -657,19 +657,19 @@ Feature: Custom formats
 
     Scenario: Export journal list to formats with no default journal
         Given we use the config "no_default_journal.yaml"
-        When we run "jrnl --list"
+        When we run "alog --list"
         Then the output should match
             """
             Journals defined in config \(.+no_default_journal\.yaml\)
              \* simple -> features/journals/simple\.journal
              \* work   -> features/journals/work\.journal
             """
-        When we run "jrnl --list --format json"
+        When we run "alog --list --format json"
         Then the output should match
             """
             {"config_path": ".+no_default_journal\.yaml", "journals": {"simple": "features/journals/simple\.journal", "work": "features/journals/work\.journal"}}
             """
-        When we run "jrnl --list --format yaml"
+        When we run "alog --list --format yaml"
         Then the output should match
             """
             config_path: .+no_default_journal\.yaml

@@ -1,13 +1,13 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import datetime
 
 import numpy as np
 
-from jrnl.search.entry_id import body_hash
-from jrnl.search.entry_id import entry_id
-from jrnl.search.index import SemanticIndex
+from alog.search.entry_id import body_hash
+from alog.search.entry_id import entry_id
+from alog.search.index import SemanticIndex
 
 
 class DummyEntry:

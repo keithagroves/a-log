@@ -1,24 +1,24 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
 # Journal Types
-`jrnl` can store your journal in a few different ways:
+`alog` can store your journal in a few different ways:
 
  - a single text file (encrypted or otherwise)
  - a folder structure organized by date containing unencrypted text files
  - the DayOne Classic format
 
 There is no need to specify what type of journal you'd like to use. Instead,
-`jrnl` will automatically detect the journal type based on whether you're
+`alog` will automatically detect the journal type based on whether you're
 referencing a file or a folder in your [config file](advanced.md),
 and if it's a folder, whether or not DayOne Classic content exists in it.
 
 ## Single File
 The single file format is the most flexible, as it can be [encrypted](encryption.md).
 To use it, enter any path that is a file or does not already exist. You can
-use any extension. `jrnl` will automatically create the file when you save
+use any extension. `alog` will automatically create the file when you save
 your first entry.
 
 ## Folder
@@ -33,14 +33,14 @@ be located in: `~/folderjournal/2021/05/05.txt`
 !!! note
 Creating a new folder journal can be done in two ways:
 
-* Create a folder with the name of the journal before running `jrnl`. Otherwise, when you run `jrnl` for the first time, it will assume that you are creating a single file journal instead, and it will create a file at that path.
+* Create a folder with the name of the journal before running `alog`. Otherwise, when you run `alog` for the first time, it will assume that you are creating a single file journal instead, and it will create a file at that path.
 * Create a new journal in your [config_file](advanced.md) and end the path with a ``/`` (on a POSIX system like Linux or MacOSX) or a ``\`` (on a Windows system). The folder will be created automatically if it doesn't exist.
 
 !!! note
 Folder journals can't be encrypted.
 
 ## Day One Classic
-`jrnl` supports the original data format used by DayOne. It's similar to the folder
+`alog` supports the original data format used by DayOne. It's similar to the folder
 journal format, except it's identified by either of these characteristics:
 
 * the folder has a `.dayone` extension
@@ -61,5 +61,5 @@ For instance, if you have a `projects` journal you would like to import into
 a `new` journal, you would run the following after setting up the configuration
 for your `new` journal:
 ```
-jrnl projects --format txt | jrnl new --import
+alog projects --format txt | alog new --import
 ```

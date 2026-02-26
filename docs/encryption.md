@@ -1,5 +1,5 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
@@ -7,9 +7,9 @@ License: https://www.gnu.org/licenses/gpl-3.0.html
 
 ## A Note on Security
 
-While `jrnl` follows best practices, total security is never possible in the
+While `alog` follows best practices, total security is never possible in the
 real world. There are a number of ways that people can at least partially
-compromise your `jrnl` data. See the [Privacy and Security](./privacy-and-security.md) page
+compromise your `alog` data. See the [Privacy and Security](./privacy-and-security.md) page
 for more information.
 
 ## Encrypting and Decrypting
@@ -18,24 +18,24 @@ Existing plain text journal files can be encrypted using the `--encrypt`
 command:
 
 ``` sh
-jrnl --encrypt [FILENAME]
+alog --encrypt [FILENAME]
 ```
 
 You can then enter a new password, and the unencrypted file will replaced with
 the new encrypted file.
 
 This command also works to change the password for a journal file that is
-already encrypted. `jrnl` will prompt you for the current password and then new
+already encrypted. `alog` will prompt you for the current password and then new
 password.
 
 Conversely,
 
 ``` sh
-jrnl --decrypt [FILENAME]
+alog --decrypt [FILENAME]
 ```
 
 replaces the encrypted journal file with a plain text file. You can also specify
-a filename, e.g., `jrnl --decrypt plain_text_copy.txt`, to leave the original
+a filename, e.g., `alog --decrypt plain_text_copy.txt`, to leave the original
 encrypted file untouched and create a new plain text file next to it.
 
 !!! note
@@ -48,21 +48,21 @@ encrypted file untouched and create a new plain text file next to it.
 
 ## Storing Passwords in Your Keychain
 
-Nobody can recover or reset your `jrnl` password. If you lose it,
+Nobody can recover or reset your `alog` password. If you lose it,
 your data will be inaccessible forever.
 
-For this reason, when encrypting a journal, `jrnl` asks whether you would like
+For this reason, when encrypting a journal, `alog` asks whether you would like
 to store the password in your system's keychain. An added benefit is that you
 will not need to enter the password when interacting with the journal file.
 
 If you don't initially store the password in your keychain but decide to do so
 later---or if you want to store it in one computer's keychain but not in another
-computer's---you can run `jrnl --encrypt` on an encrypted journal and use the
+computer's---you can run `alog --encrypt` on an encrypted journal and use the
 same password again. This will trigger the keychain storage prompt.
 
 ## Manual Decryption
 
-The easiest way to decrypt your journal is with `jrnl --decrypt`, but you could
+The easiest way to decrypt your journal is with `alog --decrypt`, but you could
 also decrypt your journal manually if needed. To do this, you can use any
 program that supports the AES algorithm (specifically AES-CBC), and you'll need
 the following relevant information for decryption:
@@ -84,14 +84,14 @@ decrypt your journal.
 
 !!! note
     These are only examples, and are only here to illustrate that your journal files
-    will still be recoverable even if `jrnl` isn't around anymore. Please use 
-    `jrnl --decrypt` if available.
+    will still be recoverable even if `alog` isn't around anymore. Please use 
+    `alog --decrypt` if available.
 
-**Example for jrnl v2 files**:
+**Example for alog v2 files**:
 ``` python
 #!/usr/bin/env python3
 """
-Decrypt a jrnl v2 encrypted journal.
+Decrypt a alog v2 encrypted journal.
 
 Note: the `cryptography` module must be installed (you can do this with
 something like `pip3 install crytography`)
@@ -126,11 +126,11 @@ key = base64.urlsafe_b64encode(kdf.derive(password))
 print(Fernet(key).decrypt(ciphertext).decode("utf-8"))
 ```
 
-**Example for jrnl v1 files**:
+**Example for alog v1 files**:
 ``` python
 #!/usr/bin/env python3
 """
-Decrypt a jrnl v1 encrypted journal.
+Decrypt a alog v1 encrypted journal.
 
 Note: the `pycrypto` module must be installed (you can do this with something
 like `pip3 install pycrypto`)

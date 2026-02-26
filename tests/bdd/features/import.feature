@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 Feature: Importing data
@@ -6,8 +6,8 @@ Feature: Importing data
     Scenario Outline: --import allows new entry from stdin
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --import" and pipe "[2020-07-05 15:00] Observe and import."
-        When we run "jrnl -9 --short"
+        When we run "alog --import" and pipe "[2020-07-05 15:00] Observe and import."
+        When we run "alog -9 --short"
         Then the output should contain "Observe and import"
 
         Examples: Configs
@@ -20,7 +20,7 @@ Feature: Importing data
     Scenario Outline: --import allows new large entry from stdin
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --import" and pipe
+        When we run "alog --import" and pipe
             """
             [2020-07-05 15:00] Observe and import.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada quis
@@ -30,7 +30,7 @@ Feature: Importing data
             tellus placerat, sed ultricies metus bibendum. Duis eget venenatis erat. In at
             dolor dui end of entry.
             """
-        When we run "jrnl -on 2020-07-05"
+        When we run "alog -on 2020-07-05"
         Then the output should contain "2020-07-05 15:00 Observe and import."
         And the output should contain "Lorem ipsum"
         And the output should contain "end of entry."
@@ -45,7 +45,7 @@ Feature: Importing data
     Scenario Outline: --import allows multiple new entries from stdin
         Given we use the config "<config_file>"
         And we use the password "test" if prompted
-        When we run "jrnl --import" and pipe
+        When we run "alog --import" and pipe
             """
             [2020-07-05 15:00] Observe and import.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -53,7 +53,7 @@ Feature: Importing data
             [2020-07-05 15:01] Twice as nice.
             Sed dignissim sed nisl eu consequat.
             """
-        When we run "jrnl -on 2020-07-05"
+        When we run "alog -on 2020-07-05"
         Then the output should contain "2020-07-05 15:00 Observe and import."
         And the output should contain "Lorem ipsum"
         And the output should contain "2020-07-05 15:01 Twice as nice."
@@ -68,29 +68,29 @@ Feature: Importing data
 
     Scenario: --import allows import new entries from file
         Given we use the config "simple.yaml"
-        When we run "jrnl -99"
+        When we run "alog -99"
         Then the output should contain "My first entry."
         And the output should contain "Life is good."
         But the output should not contain "I have an @idea"
         And the output should not contain "I met with"
-        When we run "jrnl --import --file features/journals/tags.journal"
-        And we run "jrnl -99"
+        When we run "alog --import --file features/journals/tags.journal"
+        And we run "alog -99"
         Then the output should contain "My first entry."
         And the output should contain "Life is good."
         And the output should contain "PROFIT!"
 
     Scenario: --import prioritizes --file over pipe data if both are given
         Given we use the config "simple.yaml"
-        When we run "jrnl -99"
+        When we run "alog -99"
         Then the output should contain "My first entry."
         And the output should contain "Life is good."
         But the output should not contain "I have an @idea"
         And the output should not contain "I met with"
-        When we run "jrnl --import --file features/journals/tags.journal" and pipe
+        When we run "alog --import --file features/journals/tags.journal" and pipe
             """
             [2020-07-05 15:00] I should not exist!
             """
-        And we run "jrnl -99"
+        And we run "alog -99"
         Then the output should contain "My first entry."
         And the output should contain "PROFIT!"
         But the output should not contain "I should not exist!"

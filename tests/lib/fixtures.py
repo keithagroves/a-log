@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import os
@@ -15,8 +15,8 @@ from keyring import errors
 from pytest import fixture
 from rich.console import Console
 
-from jrnl.config import load_config
-from jrnl.os_compat import split_args
+from alog.config import load_config
+from alog.os_compat import split_args
 from tests.lib.helpers import get_fixture
 
 
@@ -125,7 +125,7 @@ def mock_args(cache_dir, request):
 
         args = split_args(command)
 
-        return patch("sys.argv", ["jrnl"] + args)
+        return patch("sys.argv", ["alog"] + args)
 
     return {"args": _mock_args}
 
@@ -137,7 +137,7 @@ def mock_is_tty(is_tty):
 
 @fixture
 def mock_overrides(config_in_memory):
-    from jrnl.override import apply_overrides
+    from alog.override import apply_overrides
 
     def my_overrides(*args, **kwargs):
         result = apply_overrides(*args, **kwargs)
@@ -146,7 +146,7 @@ def mock_overrides(config_in_memory):
 
     return {
         "overrides": lambda: patch(
-            "jrnl.controller.apply_overrides", side_effect=my_overrides
+            "alog.controller.apply_overrides", side_effect=my_overrides
         )
     }
 
@@ -160,10 +160,10 @@ def mock_config_path(request):
 
     return {
         "config_path_install": lambda: patch(
-            "jrnl.install.get_config_path", return_value=config_path
+            "alog.install.get_config_path", return_value=config_path
         ),
         "config_path_config": lambda: patch(
-            "jrnl.config.get_config_path", return_value=config_path
+            "alog.config.get_config_path", return_value=config_path
         ),
     }
 
@@ -173,10 +173,10 @@ def mock_default_journal_path(temp_dir):
     journal_path = os.path.join(temp_dir.name, "journal.txt")
     return {
         "default_journal_path_install": lambda: patch(
-            "jrnl.install.get_default_journal_path", return_value=journal_path
+            "alog.install.get_default_journal_path", return_value=journal_path
         ),
         "default_journal_path_config": lambda: patch(
-            "jrnl.config.get_default_journal_path", return_value=journal_path
+            "alog.config.get_default_journal_path", return_value=journal_path
         ),
     }
 
@@ -186,7 +186,7 @@ def mock_default_templates_path(temp_dir):
     templates_path = os.path.join(temp_dir.name, "templates")
     return {
         "get_templates_path": lambda: patch(
-            "jrnl.editor.get_templates_path", return_value=templates_path
+            "alog.editor.get_templates_path", return_value=templates_path
         ),
     }
 
@@ -273,7 +273,7 @@ def mock_user_input(request, password_input, stdin_input):
         mock_console = Mock(wraps=Console(stderr=True))
         mock_console.input = Mock(side_effect=mock_console_input)
 
-        return patch("jrnl.output._get_console", return_value=mock_console)
+        return patch("alog.output._get_console", return_value=mock_console)
 
     return {
         "user_input": _mock_user_input,
@@ -359,7 +359,7 @@ def mock_editor(editor_state):
 
         Path(tmpfile).touch()
         with open(tmpfile, editor_state["intent"]["method"]) as f:
-            # Touch the file so jrnl knows it was edited
+            # Touch the file so alog knows it was edited
             if editor_state["intent"]["input"] is not None:
                 f.write(editor_state["intent"]["input"])
 

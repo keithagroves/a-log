@@ -1,5 +1,5 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
@@ -10,32 +10,32 @@ in your [configuration file](./reference-config-file.md#editor). If your editor 
 in your operating system's `PATH` environment variable, then you will have to 
 enter the full path of your editor.
 
-Once it's configured, you can create an entry as a new document in your editor using the `jrnl` 
+Once it's configured, you can create an entry as a new document in your editor using the `alog` 
 command by itself:
 
 ``` text
-jrnl
+alog
 ```
 
 You can specify the time and title of the entry as usual on the first line of the document. 
 
-If you want, you can skip the editor by including a quick entry with the `jrnl` command:
+If you want, you can skip the editor by including a quick entry with the `alog` command:
 
 ``` text
-jrnl yesterday: All my troubles seemed so far away.
+alog yesterday: All my troubles seemed so far away.
 ```
 
 If you want to start the entry on the command line and continue writing in your chosen editor, 
 use the `--edit` flag. For example:
 
 ``` text
-jrnl yesterday: All my troubles seemed so far away. --edit
+alog yesterday: All my troubles seemed so far away. --edit
 ```
 
 !!! note
     To save and log any entry edits, save and close the file.
 
-All editors must be [blocking processes](https://en.wikipedia.org/wiki/Blocking_(computing)) to work with jrnl. Some editors, such as [micro](https://micro-editor.github.io/), are blocking by default, though others can be made to block with additional arguments, such as many of those documented below. If jrnl opens your editor but finishes running immediately, then your editor is not a blocking process, and you may be able to correct that with one of the suggestions below.
+All editors must be [blocking processes](https://en.wikipedia.org/wiki/Blocking_(computing)) to work with alog. Some editors, such as [micro](https://micro-editor.github.io/), are blocking by default, though others can be made to block with additional arguments, such as many of those documented below. If alog opens your editor but finishes running immediately, then your editor is not a blocking process, and you may be able to correct that with one of the suggestions below.
 
 Please see [this section](./privacy-and-security.md#editor-history) about how
 your editor might leak sensitive information and how to mitigate that risk.
@@ -43,13 +43,13 @@ your editor might leak sensitive information and how to mitigate that risk.
 ## Sublime Text
 
 To use [Sublime Text](https://www.sublimetext.com/), install the command line
-tools for Sublime Text and configure your `jrnl.yaml` like this:
+tools for Sublime Text and configure your `alog.yaml` like this:
 
 ```yaml
 editor: "subl -w"
 ```
 
-Note the `-w` flag to make sure `jrnl` waits for Sublime Text to close the
+Note the `-w` flag to make sure `alog` waits for Sublime Text to close the
 file before writing into the journal.
 
 ## Visual Studio Code
@@ -89,7 +89,7 @@ editor: "nvim"
 
 On OS X, you can use the fabulous [iA
 Writer](http://www.iawriter.com/mac) to write entries. Configure your
-`jrnl.yaml` like this:
+`alog.yaml` like this:
 
 ```yaml
 editor: "open -b pro.writer.mac -Wn"
@@ -111,20 +111,20 @@ grep -A 1 CFBundleIdentifier /Applications/iA\ Writer.app/Contents/Info.plist
 ## Notepad++ on Windows
 
 To set [Notepad++](http://notepad-plus-plus.org/) as your editor, edit
-the `jrnl` config file (`jrnl.yaml`) like this:
+the `alog` config file (`alog.yaml`) like this:
 
 ```yaml
 editor: "C:\\Program Files (x86)\\Notepad++\\notepad++.exe -multiInst -nosession"
 ```
 
-The double backslashes are needed so `jrnl` can read the file path
-correctly. The `-multiInst -nosession` options will cause `jrnl` to open
+The double backslashes are needed so `alog` can read the file path
+correctly. The `-multiInst -nosession` options will cause `alog` to open
 its own Notepad++ window.
 
 
 ## emacs
 
-To use `emacs` as your editor, edit the `jrnl` config file (`jrnl.yaml`) like this:
+To use `emacs` as your editor, edit the `alog` config file (`alog.yaml`) like this:
 
 ```yaml
 editor: emacsclient -a "" -c

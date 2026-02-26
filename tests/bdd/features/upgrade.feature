@@ -1,12 +1,12 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 Feature: Upgrading Journals from 1.x.x to 2.x.x
 
     Scenario: Upgrade and parse journals with square brackets
         Given we use the config "upgrade_from_195.json"
-        When we run "jrnl -9" and enter "Y"
-        When we run "jrnl -99 --short"
+        When we run "alog -9" and enter "Y"
+        When we run "alog -99 --short"
         Then the output should be
             """
             2010-06-10 15:00 A life without chocolate is like a bad analogy.
@@ -21,9 +21,9 @@ Feature: Upgrading Journals from 1.x.x to 2.x.x
             2013-06-10 15:40 He said "[this] is the best time to be alive".
             """
 
-    Scenario: Upgrading a journal encrypted with jrnl 1.x
+    Scenario: Upgrading a journal encrypted with alog 1.x
         Given we use the config "encrypted_old.json"
-        When we run "jrnl -n 1" and enter
+        When we run "alog -n 1" and enter
             """
             Y
             bad doggie no biscuit
@@ -34,7 +34,7 @@ Feature: Upgrading Journals from 1.x.x to 2.x.x
 
     Scenario: Upgrading a config without colors to colors
         Given we use the config "no_colors.yaml"
-        When we run "jrnl -n 1"
+        When we run "alog -n 1"
         Then the config should contain
             """
             colors:
@@ -46,7 +46,7 @@ Feature: Upgrading Journals from 1.x.x to 2.x.x
 
     Scenario: Upgrade and parse journals with little endian date format
         Given we use the config "upgrade_from_195_little_endian_dates.json"
-        When we run "jrnl -9 --short" and enter "Y"
+        When we run "alog -9 --short" and enter "Y"
         Then the output should contain
             """
             10.06.2010 15:00 A life without chocolate is like a bad analogy.
@@ -55,13 +55,13 @@ Feature: Upgrading Journals from 1.x.x to 2.x.x
 
     Scenario: Upgrade with missing journal
         Given we use the config "upgrade_from_195_with_missing_journal.json"
-        When we run "jrnl --list" and enter "Y"
+        When we run "alog --list" and enter "Y"
         Then the output should contain "features/journals/missing.journal does not exist"
         And we should get no error
 
     Scenario: Upgrade with missing encrypted journal
         Given we use the config "upgrade_from_195_with_missing_encrypted_journal.json"
-        When we run "jrnl --list" and enter
+        When we run "alog --list" and enter
             """
             Y
             bad doggie no biscuit

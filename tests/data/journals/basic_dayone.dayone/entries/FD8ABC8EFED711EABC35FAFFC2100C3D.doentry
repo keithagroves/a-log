@@ -38,7 +38,7 @@ ante eget fringilla. @tagthree and also @tagone</string>
 		<key>OS Agent</key>
 		<string>Darwin/19.3.0</string>
 		<key>Software Agent</key>
-		<string>jrnl/v2.4.5</string>
+		<string>alog/v2.4.5</string>
 	</dict>
 </dict>
 </plist>

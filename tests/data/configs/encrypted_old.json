@@ -5,7 +5,7 @@
     "encrypt": true,
     "highlight": true,
     "journals": {
-      "default": "features/journals/encrypted_jrnl-1-9-5.journal"
+      "default": "features/journals/encrypted_alog-1-9-5.journal"
     },
     "linewrap": 80,
     "tagsymbols": "@",

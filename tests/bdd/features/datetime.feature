@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 Feature: Reading and writing to journal with custom date formats
@@ -6,26 +6,26 @@ Feature: Reading and writing to journal with custom date formats
     Scenario: Dates can include a time
         # https://github.com/jrnl-org/jrnl/issues/117
         Given we use the config "simple.yaml"
-        When we run "jrnl 2013-11-30 15:42: Project Started."
+        When we run "alog 2013-11-30 15:42: Project Started."
         Then we should get no error
-        When we run "jrnl -999"
+        When we run "alog -999"
         Then the output should contain "2013-11-30 15:42 Project Started."
 
 
     Scenario: Dates can be in the future
         # https://github.com/jrnl-org/jrnl/issues/185
         Given we use the config "simple.yaml"
-        When we run "jrnl 26/06/2099: Planet? Earth. Year? 2099."
+        When we run "alog 26/06/2099: Planet? Earth. Year? 2099."
         Then we should get no error
-        When we run "jrnl -999"
+        When we run "alog -999"
         Then the output should contain "2099-06-26 09:00 Planet?"
 
 
     Scenario: Loading a sample journal with custom date
         Given we use the config "little_endian_dates.yaml"
-        When we run "jrnl -n 2"
+        When we run "alog -n 2"
         Then we should get no error
-        When we run "jrnl -n 999"
+        When we run "alog -n 999"
         Then the output should be
             """
             09.06.2013 15:39 My first entry.
@@ -38,9 +38,9 @@ Feature: Reading and writing to journal with custom date formats
 
     Scenario Outline: Writing an entry from command line with custom date
         Given we use the config "<config_file>"
-        When we run "jrnl <command>"
+        When we run "alog <command>"
         Then we should get no error
-        When we run "jrnl -n 1"
+        When we run "alog -n 1"
         Then the output should contain "<expected_output>"
 
         Examples: Day-first Dates
@@ -57,7 +57,7 @@ Feature: Reading and writing to journal with custom date formats
 
     Scenario Outline: Searching for dates with custom date
         Given we use the config "<config_file>"
-        When we run "jrnl <command>"
+        When we run "alog <command>"
         Then the output should be "<expected_output>"
 
         Examples: Day-first Dates
@@ -74,9 +74,9 @@ Feature: Reading and writing to journal with custom date formats
 
     Scenario: Writing an entry at the prompt with custom date
         Given we use the config "little_endian_dates.yaml"
-        When we run "jrnl" and type "2013-05-10: I saw Elvis. He's alive."
+        When we run "alog" and type "2013-05-10: I saw Elvis. He's alive."
         Then we should get no error
-        When we run "jrnl -999"
+        When we run "alog -999"
         Then the output should contain "10.05.2013 09:00 I saw Elvis."
         And the output should contain "He's alive."
 
@@ -84,7 +84,7 @@ Feature: Reading and writing to journal with custom date formats
     Scenario: Viewing today's entries does not print the entire journal
         # see: https://github.com/jrnl-org/jrnl/issues/741
         Given we use the config "simple.yaml"
-        When we run "jrnl -on today"
+        When we run "alog -on today"
         Then the output should not contain "Life is good"
         And the output should not contain "But I'm better."
 
@@ -92,9 +92,9 @@ Feature: Reading and writing to journal with custom date formats
     Scenario Outline: Create entry using day of the week as entry date one.
         Given we use the config "simple.yaml"
         And now is "2019-03-12 01:30:32 PM"
-        When we run "jrnl <command>"
+        When we run "alog <command>"
         Then we should get no error
-        When we run "jrnl -1"
+        When we run "alog -1"
         Then the output should contain "<expected_output>"
         Then the output should contain the date "<date>"
 
@@ -114,9 +114,9 @@ Feature: Reading and writing to journal with custom date formats
     Scenario Outline: Create entry using day of the week as entry date two.
         Given we use the config "simple.yaml"
         And now is "2019-03-12 01:30:32 PM"
-        When we run "jrnl <command>"
+        When we run "alog <command>"
         Then we should get no error
-        When we run "jrnl -1"
+        When we run "alog -1"
         Then the output should contain "<expected_output>"
         Then the output should contain the date "<date>"
 
@@ -135,14 +135,14 @@ Feature: Reading and writing to journal with custom date formats
 
     Scenario: Journals with unreadable dates should still be loaded
         Given we use the config "unreadabledates.yaml"
-        When we run "jrnl -2"
+        When we run "alog -2"
         Then the output should contain "I've lost track of time."
         And the output should contain "Time has no meaning."
 
 
     Scenario: Journals with readable dates AND unreadable dates should still contain all data.
         Given we use the config "mostlyreadabledates.yaml"
-        When we run "jrnl --short"
+        When we run "alog --short"
         Then the output should be
             """
             2019-07-01 14:23 The third entry
@@ -153,14 +153,14 @@ Feature: Reading and writing to journal with custom date formats
 
     Scenario: Update near-valid dates after journal is edited
         Given we use the config "mostlyreadabledates.yaml"
-        When we run "jrnl 2222-08-19: I have made it exactly one month into the future."
-        When we run "jrnl -2"
+        When we run "alog 2222-08-19: I have made it exactly one month into the future."
+        When we run "alog -2"
         Then the output should contain "2019-07-19 14:23 The second entry"
 
 
     Scenario: Integers in square brackets should not be read as dates
         Given we use the config "brackets.yaml"
-        When we run "jrnl -1"
+        When we run "alog -1"
         Then the output should contain "[1] line starting with 1"
 
 
@@ -168,7 +168,7 @@ Feature: Reading and writing to journal with custom date formats
     @skip
     Scenario: Dayone entries without timezone information are interpreted in current timezone
         Given we use the config "dayone.yaml"
-        When we run "jrnl -until 'feb 2013'"
+        When we run "alog -until 'feb 2013'"
         Then we should get no error
         And the output should contain "2013-01-17T18:37Z" in the local time
 
@@ -176,7 +176,7 @@ Feature: Reading and writing to journal with custom date formats
     Scenario: Loading entry with ambiguous time stamp in timezone-aware journal (like Dayone)
         #https://github.com/jrnl-org/jrnl/issues/153
         Given we use the config "bug153.yaml"
-        When we run "jrnl -1"
+        When we run "alog -1"
         Then we should get no error
         And the output should be
             """
@@ -188,13 +188,13 @@ Feature: Reading and writing to journal with custom date formats
     Scenario Outline: Using "tomorrow" near daylight savings works in Dayone journals
         Given we use the config "dayone.yaml"
         And now is "<date>"
-        When we run "jrnl yesterday: This thing happened yesterday"
+        When we run "alog yesterday: This thing happened yesterday"
         Then we should get no error
-        When we run "jrnl today at 11:59pm: Adding an entry right now."
+        When we run "alog today at 11:59pm: Adding an entry right now."
         Then we should get no error
-        When we run "jrnl tomorrow: A future entry."
+        When we run "alog tomorrow: A future entry."
         Then we should get no error
-        When we run "jrnl -from yesterday -to today"
+        When we run "alog -from yesterday -to today"
         Then the output should contain "This thing happened yesterday"
         And the output should contain "Adding an entry right now."
         And the output should not contain "A future entry."

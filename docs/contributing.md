@@ -1,11 +1,11 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
-# Contributing to jrnl
+# Contributing to alog
 
-We welcome contributions to jrnl, whether it's through reporting bugs, improving the documentation, testing releases, engaging in discussion on features and bugs, or writing code.
+We welcome contributions to alog, whether it's through reporting bugs, improving the documentation, testing releases, engaging in discussion on features and bugs, or writing code.
 
 ## Table of Contents
  * [Code of Conduct](#code-of-conduct)
@@ -13,7 +13,7 @@ We welcome contributions to jrnl, whether it's through reporting bugs, improving
  * [Editing Documentation](#editing-documentation)
  * [Testing](#testing)
  * [Submitting feature requests and ideas](#submitting-feature-requests-and-ideas)
- * [Developing jrnl](#developing)
+ * [Developing alog](#developing)
 
 ## Code of Conduct
 
@@ -31,13 +31,13 @@ To edit the documentation, edit the `docs/*.md` files on the **develop** branch.
 
 ### External editors and tips and tricks
 
-If you'd like to share a jrnl command line trick that you find useful, you may find it worthwhile to add it to the ["Tips and Tricks" section](tips-and-tricks.md). For advice on how to integrate a particular external editor, you can add to the ["External Editors" section](external-editors.md).
+If you'd like to share a alog command line trick that you find useful, you may find it worthwhile to add it to the ["Tips and Tricks" section](tips-and-tricks.md). For advice on how to integrate a particular external editor, you can add to the ["External Editors" section](external-editors.md).
 
 ## Testing
 
-Much of the work of maintaining jrnl involves testing rather than coding.
+Much of the work of maintaining alog involves testing rather than coding.
 
-The nature of jrnl means we deal with extremely sensitive data, and can't risk data loss. While jrnl does have a comprehensive automated testing suite, user testing is crucial to mitigating this risk.
+The nature of alog means we deal with extremely sensitive data, and can't risk data loss. While alog does have a comprehensive automated testing suite, user testing is crucial to mitigating this risk.
 
 ### Prereleases
 
@@ -49,7 +49,7 @@ If you are comfortable enough with git, feel free to fetch particular [pull requ
 
 ### Confirm bug reports
 
-There are always [open bugs among our GitHub issues](https://github.com/jrnl-org/jrnl/issues?q=is%3Aissue+is%3Aopen+label%3Abug) and many are specific to a particular OS, Python version, or jrnl version. A simple comment like "Confirmed on jrnl v2.2, MacOS 10.15, Python 3.8.1" would be extremely helpful in tracking down bugs.
+There are always [open bugs among our GitHub issues](https://github.com/jrnl-org/jrnl/issues?q=is%3Aissue+is%3Aopen+label%3Abug) and many are specific to a particular OS, Python version, or alog version. A simple comment like "Confirmed on alog v2.2, MacOS 10.15, Python 3.8.1" would be extremely helpful in tracking down bugs.
 
 ### Automate tests
 
@@ -57,9 +57,9 @@ See the develop section below for information on how to contribute new automated
 
 ## Submitting feature requests and ideas
 
-If you have a feature request or idea for jrnl, please [open a new issue](https://github.com/jrnl-org/jrnl/issues/new/choose) and describe the goal of the feature, and any relevant use cases. We'll discuss the issue with you, and decide if it's a good fit for the project.
+If you have a feature request or idea for alog, please [open a new issue](https://github.com/jrnl-org/jrnl/issues/new/choose) and describe the goal of the feature, and any relevant use cases. We'll discuss the issue with you, and decide if it's a good fit for the project.
 
-When discussing new features, please keep in mind our design goals. jrnl strives to
+When discussing new features, please keep in mind our design goals. alog strives to
 [do one thing well](https://en.wikipedia.org/wiki/Unix_philosophy). To us, that means:
 
 * being _nimble_
@@ -70,11 +70,11 @@ When discussing new features, please keep in mind our design goals. jrnl strives
 
 ### Getting your environment set up
 
-You will need to install [poetry](https://python-poetry.org/) to develop jrnl. It will take care of all of the project's other dependencies.
+You will need to install [poetry](https://python-poetry.org/) to develop alog. It will take care of all of the project's other dependencies.
 
 ### Understanding the branches
 
-jrnl uses two primary branches:
+alog uses two primary branches:
 
  * `develop` - for ongoing development
  * `release` - for releases
@@ -92,7 +92,7 @@ A typical development workflow includes:
  * Activate virtual environment:
     * `poetry shell`
  * Running the source in a virtual environment:
-    * `jrnl` (with or without arguments as necessary)
+    * `alog` (with or without arguments as necessary)
  * Running tests:
      * `poe test`
  * Formatting the code to standardize its style:
@@ -102,13 +102,13 @@ A typical development workflow includes:
 
 When resolving bugs or adding new functionality, please add tests to prevent that functionality from breaking in the future. If you notice any functionality that isn't covered in the tests, feel free to submit a test-only pull request as well.
 
-For testing, jrnl uses [pytest](https://docs.pytest.org) for unit tests, and [pytest-bdd](https://pytest-bdd.readthedocs.io/) for integration testing. All tests are in the `tests` folder.
+For testing, alog uses [pytest](https://docs.pytest.org) for unit tests, and [pytest-bdd](https://pytest-bdd.readthedocs.io/) for integration testing. All tests are in the `tests` folder.
 
 Many tests can be created by only editing `*.feature` files with the same format as other tests. For more complicated functionality, you may need to implement steps in `tests/lib/` which are then executed by your tests in the `feature` files.
 
 ### Submitting pull requests
 
-When you're ready, feel free to submit a pull request (PR). The jrnl maintainers generally review the pull requests every two weeks, but the continuous integration pipeline will run on automated tests on it within a matter of minutes and will report back any issues it has found with your code across a variety of environments.
+When you're ready, feel free to submit a pull request (PR). The alog maintainers generally review the pull requests every two weeks, but the continuous integration pipeline will run on automated tests on it within a matter of minutes and will report back any issues it has found with your code across a variety of environments.
 
 The pull request template contains a checklist full of housekeeping items. Please fill them out as necessary when you submit.
 
@@ -116,7 +116,7 @@ If a pull request contains failing tests, it probably will not be reviewed, and 
 
 ### Finding things to work on
 
-You can search the [jrnl GitHub issues](https://github.com/jrnl-org/jrnl/issues) by [label](https://github.com/jrnl-org/jrnl/labels) for things to work on. Here are some labels worth searching:
+You can search the [alog GitHub issues](https://github.com/jrnl-org/jrnl/issues) by [label](https://github.com/jrnl-org/jrnl/labels) for things to work on. Here are some labels worth searching:
 
 * [critical](https://github.com/jrnl-org/jrnl/labels/critical)
 * [help wanted](https://github.com/jrnl-org/jrnl/labels/help%20wanted)
@@ -127,6 +127,6 @@ You can also get a feel for the project's priorities by reviewing the [milestone
 
 ### A note for new programmers and programmers new to python
 
-Although jrnl has grown quite a bit since its inception, the overall complexity (for an end-user program) is fairly low, and we hope you'll find the code easy enough to understand.
+Although alog has grown quite a bit since its inception, the overall complexity (for an end-user program) is fairly low, and we hope you'll find the code easy enough to understand.
 
 If you have a question, please don't hesitate to ask! Python is known for its welcoming community and openness to novice programmers, so feel free to fork the code and play around with it! If you create something you want to share with us, please create a pull request. We never expect pull requests to be perfect, idiomatic, instantly mergeable code. We can work through it together!

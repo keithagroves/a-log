@@ -1,4 +1,4 @@
-site_name: jrnl
+site_name: alog
 site_url: https://jrnl.sh
 theme:
   name: readthedocs
@@ -17,7 +17,7 @@ markdown_extensions:
   - admonition
 repo_url: https://github.com/jrnl-org/jrnl/
 edit_uri: edit/develop/docs/
-site_author: jrnl contributors
+site_author: alog contributors
 site_description: Collect your thoughts and notes without leaving the command line.
 nav:
   - Overview: overview.md
@@ -35,5 +35,5 @@ nav:
     - Command Line: reference-command-line.md
     - Configuration File: reference-config-file.md
   - 'Contributing':
-    - Contributing to jrnl: contributing.md
+    - Contributing to alog: contributing.md
 

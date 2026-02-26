@@ -1,11 +1,11 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import numpy as np
 
-from jrnl.search.crypto import IndexKeyCrypto
-from jrnl.search.crypto import pack_payload
-from jrnl.search.crypto import unpack_payload
+from alog.search.crypto import IndexKeyCrypto
+from alog.search.crypto import pack_payload
+from alog.search.crypto import unpack_payload
 
 
 def test_index_crypto_roundtrip():

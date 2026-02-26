@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import json
@@ -36,7 +36,7 @@ def generate_pa11y_config_from_sitemap():
 
     urls = [
         f"{DOCS_URL}/",
-        f"{DOCS_URL}/search.html?q=jrnl",
+        f"{DOCS_URL}/search.html?q=alog",
     ]
     urls += [url["loc"] for url in xml_sitemap["urlset"]["url"]]
 

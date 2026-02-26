@@ -1,23 +1,23 @@
-Feature: Installing jrnl
+Feature: Installing alog
 
-    Scenario: Install jrnl with default options
+    Scenario: Install alog with default options
         Given we use no config
-        When we run "jrnl hello world" and enter
+        When we run "alog hello world" and enter
             """	
             \n
             \n
             \n
             """
-        Then the output should contain "jrnl configuration created at"
+        Then the output should contain "alog configuration created at"
         And the output should contain "For advanced features, read the docs at https://jrnl.sh"
         And the output should contain "Journal 'default' created"
         And the default journal "journal.txt" should be in the "." directory
         And the config should contain "encrypt: false"
         And the version in the config file should be up-to-date
 
-    Scenario: Install jrnl with custom relative default journal path
+    Scenario: Install alog with custom relative default journal path
         Given we use no config
-        When we run "jrnl hello world" and enter
+        When we run "alog hello world" and enter
             """
             default/custom.txt
             n
@@ -28,10 +28,10 @@ Feature: Installing jrnl
         And the config should contain "encrypt: false"
         And the version in the config file should be up-to-date
 
-    Scenario: Install jrnl with custom expanded default journal path
+    Scenario: Install alog with custom expanded default journal path
         Given we use no config
         And the home directory is called "home"
-        When we run "jrnl hello world" and enter
+        When we run "alog hello world" and enter
             """
             ~/custom.txt
             n
@@ -42,9 +42,9 @@ Feature: Installing jrnl
         And the config should contain "encrypt: false"
         And the version in the config file should be up-to-date
 
-    Scenario: Install jrnl with encrypted default journal
+    Scenario: Install alog with encrypted default journal
         Given we use no config
-        When we run "jrnl hello world" and enter
+        When we run "alog hello world" and enter
             """
             encrypted.txt
             y
@@ -54,12 +54,12 @@ Feature: Installing jrnl
         And the default journal "encrypted.txt" should be in the "." directory
         And the config should contain "encrypt: true"
         And the version in the config file should be up-to-date
-        When we run "jrnl"
+        When we run "alog"
         Then we should be prompted for a password
 
-   Scenario: Install jrnl with colors by default
+   Scenario: Install alog with colors by default
         Given we use no config
-        When we run "jrnl hello world" and enter
+        When we run "alog hello world" and enter
             """
             \n
             \n
@@ -75,9 +75,9 @@ Feature: Installing jrnl
                 title: cyan
             """
 
-   Scenario: Install jrnl without colors
+   Scenario: Install alog without colors
         Given we use no config
-        When we run "jrnl hello world" and enter
+        When we run "alog hello world" and enter
             """
             \n
             \n
@@ -93,9 +93,9 @@ Feature: Installing jrnl
                 title: none
             """
 
-    Scenario: Install jrnl with encrypted default journal with no entries
+    Scenario: Install alog with encrypted default journal with no entries
         Given we use no config
-        When we run "jrnl -1" and enter
+        When we run "alog -1" and enter
             """
             encrypted.txt
             y
@@ -108,7 +108,7 @@ Feature: Installing jrnl
         And the default journal "encrypted.txt" should be in the "." directory
         And the config should contain "encrypt: true"
         And the version in the config file should be up-to-date
-        When we run "jrnl -1" and enter
+        When we run "alog -1" and enter
             """
             test
             """

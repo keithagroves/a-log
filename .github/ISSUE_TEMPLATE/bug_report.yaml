@@ -15,7 +15,7 @@ body:
     id: diagnostic
     attributes:
       label: Diagnostic output
-      description: Run `jrnl --diagnostic` and paste the output below
+      description: Run `alog --diagnostic` and paste the output below
       placeholder: Paste output here
     validations:
       required: true
@@ -56,7 +56,7 @@ body:
       label: Debug output
       description: |
         Please provide the output of your command with the `--debug` flag on.
-      placeholder: "example: `jrnl --debug lorem ipsum`"
+      placeholder: "example: `alog --debug lorem ipsum`"
     validations:
       required: true
 

@@ -1,12 +1,12 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import shlex
 
 import pytest
 
-from jrnl.args import parse_args
-from jrnl.config import make_yaml_valid_dict
+from alog.args import parse_args
+from alog.config import make_yaml_valid_dict
 
 
 def cli_as_dict(str):
@@ -75,7 +75,7 @@ def test_change_time_alone():
 
 
 def test_diagnostic_alone():
-    from jrnl.commands import preconfig_diagnostic
+    from alog.commands import preconfig_diagnostic
 
     assert cli_as_dict("--diagnostic") == expected_args(
         preconfig_cmd=preconfig_diagnostic
@@ -87,13 +87,13 @@ def test_edit_alone():
 
 
 def test_encrypt_alone():
-    from jrnl.commands import postconfig_encrypt
+    from alog.commands import postconfig_encrypt
 
     assert cli_as_dict("--encrypt") == expected_args(postconfig_cmd=postconfig_encrypt)
 
 
 def test_decrypt_alone():
-    from jrnl.commands import postconfig_decrypt
+    from alog.commands import postconfig_decrypt
 
     assert cli_as_dict("--decrypt") == expected_args(postconfig_cmd=postconfig_decrypt)
 
@@ -144,13 +144,13 @@ def test_export_alone():
 
 
 def test_import_alone():
-    from jrnl.commands import postconfig_import
+    from alog.commands import postconfig_import
 
     assert cli_as_dict("--import") == expected_args(postconfig_cmd=postconfig_import)
 
 
 def test_index_search_alone():
-    from jrnl.commands import postconfig_index_search
+    from alog.commands import postconfig_index_search
 
     assert cli_as_dict("--index-search") == expected_args(
         postconfig_cmd=postconfig_index_search
@@ -175,7 +175,7 @@ def test_limit_shorthand_alone():
 
 
 def test_list_alone():
-    from jrnl.commands import postconfig_list
+    from alog.commands import postconfig_list
 
     assert cli_as_dict("--ls") == expected_args(postconfig_cmd=postconfig_list)
 
@@ -239,7 +239,7 @@ def test_text_alone():
 
 
 def test_version_alone():
-    from jrnl.commands import preconfig_version
+    from alog.commands import preconfig_version
 
     assert cli_as_dict("--version") == expected_args(preconfig_cmd=preconfig_version)
 

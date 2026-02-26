@@ -1,11 +1,11 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
 # Basic Usage #
 
-`jrnl` has two modes: **composing** and **viewing**. Whenever you don't enter
+`alog` has two modes: **composing** and **viewing**. Whenever you don't enter
 any arguments that start with a dash (`-`) or double-dash (`--`), you're in
 composing mode, meaning that you can write your entry on the command line.
 
@@ -16,16 +16,16 @@ it. Filter arguments can be combined arbitrarily. Arguments with a _double dash_
 arguments are mutually exclusive (i.e., you can only specify one way to display
 or export your journal at a time).
 
-For a list of commands, enter `jrnl --help`.
+For a list of commands, enter `alog --help`.
 
 ## Composing Entries ##
 
-Composing mode is entered by either starting `jrnl` without any arguments --
+Composing mode is entered by either starting `alog` without any arguments --
 which will launch an external editor -- or by just writing an entry on the
 command line:
 
 ```text
-jrnl today at 3am: I just met Steve Buscemi in a bar! What a nice guy.
+alog today at 3am: I just met Steve Buscemi in a bar! What a nice guy.
 ```
 
 !!! note
@@ -33,19 +33,19 @@ jrnl today at 3am: I just met Steve Buscemi in a bar! What a nice guy.
     `*`. These characters, as well as unbalanced single or double quotation
     marks, parentheses, and others, likely will cause problems. Although
     reserved characters can be escaped using `\`, this is not ideal for
-    long-form writing. The solution: first enter `jrnl` and hit `return`. You
+    long-form writing. The solution: first enter `alog` and hit `return`. You
     can then enter the text of your journal entry. Alternatively, you can [use
     an external editor](./advanced.md).
 
 You can also import an entry directly from a file:
 
 ```sh
-jrnl < my_entry.txt
+alog < my_entry.txt
 ```
 
 ### Specifying Date and Time ###
 
-If you don't specify a date and time (e.g., `jrnl finished writing letter to brother`), `jrnl` will create an entry using the current date and time. For retrospective entries, you can use a timestamp to tell `jrnl` where to put the entry. Timestamps can be entered using a variety of formats. Here are some that work:
+If you don't specify a date and time (e.g., `alog finished writing letter to brother`), `alog` will create an entry using the current date and time. For retrospective entries, you can use a timestamp to tell `alog` where to put the entry. Timestamps can be entered using a variety of formats. Here are some that work:
 
 - at 6am
 - yesterday
@@ -56,20 +56,20 @@ If you don't specify a date and time (e.g., `jrnl finished writing letter to bro
 - 5/20/1998 at 23:42
 - 2020-05-22T15:55-04:00
 
-If you don't use a timestamp, `jrnl` will create an entry using the current
-time. If you use a date only (no time), `jrnl` will use the default time
+If you don't use a timestamp, `alog` will create an entry using the current
+time. If you use a date only (no time), `alog` will use the default time
 specified in your [configuration file](./reference-config-file.md#default_hour-and-default_minute).
-Behind the scenes, `jrnl` reorganizes entries in chronological order.
+Behind the scenes, `alog` reorganizes entries in chronological order.
 
 ### Using Tags ###
 
-`jrnl` supports tags. The default tag symbol is `@` (largely because `#` is a
+`alog` supports tags. The default tag symbol is `@` (largely because `#` is a
 reserved character). You can specify your own tag symbol in the
 [configuration file](./reference-config-file.md#tagsymbols). To use tags, preface the
 desired tag with the symbol:
 
 ```sh
-jrnl Had a wonderful day at the @beach with @Tom and @Anna.
+alog Had a wonderful day at the @beach with @Tom and @Anna.
 ```
 
 Although you can use capitals while tagging an entry, searches by tag are
@@ -82,50 +82,50 @@ There is no limit to how many tags you can use in an entry.
 To mark an entry as a favorite, simply "star" it using an asterisk (`*`):
 
 ```sh
-jrnl last sunday *: Best day of my life.
+alog last sunday *: Best day of my life.
 ```
 
 If you don't want to add a date (i.e., you want the date to be entered as
 _now_), the following options are equivalent:
 
-- `jrnl *: Best day of my life.`
-- `jrnl *Best day of my life.`
-- `jrnl Best day of my life.*`
+- `alog *: Best day of my life.`
+- `alog *Best day of my life.`
+- `alog Best day of my life.*`
 
 !!! note
     Make sure that the asterisk (`*`) is **not** surrounded by whitespaces.
-    `jrnl Best day of my life! *` will not work because the `*` character has a
+    `alog Best day of my life! *` will not work because the `*` character has a
     special meaning in most shells.
 
 ## Viewing and Searching Entries ##
 
-`jrnl` can display entries in a variety of ways.
+`alog` can display entries in a variety of ways.
 
 To view all entries, enter:
 ```sh
-jrnl -to today
+alog -to today
 ```
 
-`jrnl` provides several filtering commands, prefaced by a single dash (`-`), that
+`alog` provides several filtering commands, prefaced by a single dash (`-`), that
 allow you to find a more specific range of entries. For example,
 
 ```sh
-jrnl -n 10
+alog -n 10
 ```
 
-lists the ten most recent entries. `jrnl -10` is even more concise and works the
+lists the ten most recent entries. `alog -10` is even more concise and works the
 same way. If you want to see all of the entries you wrote from the beginning of
 last year until the end of this past March, you would enter
 
 ```sh
-jrnl -from "last year" -to march
+alog -from "last year" -to march
 ```
 
 Filter criteria that use more than one word require surrounding quotes (`""`).
 
 To see entries on a particular date, use `-on`:
 ```sh
-jrnl -on yesterday
+alog -on yesterday
 ```
 
 ### Text Search ###
@@ -138,7 +138,7 @@ You may realize that you use a word a lot and want to turn it into a tag in all
 of your previous entries.
 
 ```sh
-jrnl -contains "dogs" --edit
+alog -contains "dogs" --edit
 ```
 
 opens your external editor so that you can add a tag symbol (`@` by default) to
@@ -149,14 +149,14 @@ all instances of the word "dogs."
 You can filter your journal entries by tag. For example,
 
 ```sh
-jrnl @pinkie @WorldDomination
+alog @pinkie @WorldDomination
 ```
 
 displays all entries in which either `@pinkie` or `@WorldDomination`
 occurred. Tag filters can be combined with other filters:
 
 ```sh
-jrnl -n 5 @pinkie -and @WorldDomination
+alog -n 5 @pinkie -and @WorldDomination
 ```
 
 displays the last five entries containing _both_ `@pinkie` _and_
@@ -164,15 +164,15 @@ displays the last five entries containing _both_ `@pinkie` _and_
 in the [configuration file](./reference-config-file.md#tagsymbols).
 
 !!! note
-    Entering `jrnl @pinkie @WorldDomination` will display entries in which both
+    Entering `alog @pinkie @WorldDomination` will display entries in which both
     tags are present because, although no command line arguments are given, all
-    of the input strings look like tags. `jrnl` will assume you want to filter
+    of the input strings look like tags. `alog` will assume you want to filter
     by tag, rather than create a new entry that consists only of tags.
 
 To view a list of all tags in the journal, enter:
 
 ```sh
-jrnl --tags
+alog --tags
 ```
 
 ### Viewing Starred Entries ###
@@ -180,7 +180,7 @@ jrnl --tags
 To display only your favorite (starred) entries, enter
 
 ```sh
-jrnl -starred
+alog -starred
 ```
 
 ## Editing Entries ##
@@ -191,7 +191,7 @@ editor configured in your [configuration file](./reference-config-file.md#editor
 can also edit only the entries that match specific search criteria. For example,
 
 ```sh
-jrnl -to 1950 @texas -and @history --edit
+alog -to 1950 @texas -and @history --edit
 ```
 
 opens your external editor displaying all entries tagged with `@texas` and
@@ -204,7 +204,7 @@ specific journals. Simply prefix the filter string with the name of the journal.
 For example,
 
 ```sh
-jrnl work -n 1 --edit
+alog work -n 1 --edit
 ```
 
 opens the most recent entry in the 'work' journal in your external editor.
@@ -215,7 +215,7 @@ The `--delete` command opens an interactive interface for deleting entries. The
 date and title of each entry in the journal are presented one at a time, and you
 can choose whether to keep or delete each entry.
 
-If no filters are specified, `jrnl` will ask you to keep or delete each entry in
+If no filters are specified, `alog` will ask you to keep or delete each entry in
 the entire journal, one by one. If there are a lot of entries in the journal, it
 may be more efficient to filter entries before passing the `--delete` command.
 
@@ -227,10 +227,10 @@ entries you want to keep, and you want to look through them before deciding.
 This is what you might enter:
 
 ```sh
-jrnl -to 2004 @book --delete
+alog -to 2004 @book --delete
 ```
 
-`jrnl` will show you only the relevant entries, and you can choose the ones you
+`alog` will show you only the relevant entries, and you can choose the ones you
 want to delete.
 
 You may want to delete _all_ of the entries containing `@book` that you wrote in
@@ -238,7 +238,7 @@ You may want to delete _all_ of the entries containing `@book` that you wrote in
 use an external editor. Open an editor with the entries you want to delete...
 
 ```sh
-jrnl -to 2004 @book --edit
+alog -to 2004 @book --edit
 ```
 
 ...select everything, delete it, save and close, and all of those entries are
@@ -249,10 +249,10 @@ removed from the journal.
 To list all of your journals:
 
 ```sh
-jrnl --list
+alog --list
 ```
 
-The journals displayed correspond to those specified in the `jrnl`
+The journals displayed correspond to those specified in the `alog`
 [configuration file](./reference-config-file.md#journals).
 
 ## Semantic Search ##
@@ -275,7 +275,7 @@ Before searching, build the semantic index. This downloads a small embedding
 model (~50 MB) on first run and indexes all your entries:
 
 ```sh
-jrnl --index-search
+alog --index-search
 ```
 
 ### Searching
@@ -283,17 +283,17 @@ jrnl --index-search
 Use the `-search` flag with a natural language query:
 
 ```sh
-jrnl -search "outdoor adventures"
-jrnl -search "cooking recipes"
-jrnl -search "feeling happy"
+alog -search "outdoor adventures"
+alog -search "cooking recipes"
+alog -search "feeling happy"
 ```
 
 Results are ranked by relevance. You can combine `-search` with other
 filters:
 
 ```sh
-jrnl -search "travel" -from 2025
-jrnl -search "work stress" -n 5
+alog -search "travel" -from 2025
+alog -search "work stress" -n 5
 ```
 
 ### Auto-Indexing

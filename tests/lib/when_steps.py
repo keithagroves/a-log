@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import os
@@ -15,7 +15,7 @@ try:
 except ImportError:
     from pytest_bdd.steps import inject_fixture  # pytest_bdd 7.1.1 and earlier
 
-from jrnl.main import run
+from alog.main import run
 
 
 @when(parse('we change directory to "{directory_name}"'))
@@ -34,15 +34,15 @@ all_input = '("(?P<all_input>[^"]*)")'
 # an empty line of input internally for testing purposes.
 
 
-@when(re(f'we run "jrnl {command}" and {input_method}'))
-def we_run_jrnl_docstring(capsys, keyring, request, command, input_method, docstring):
-    we_run_jrnl(capsys, keyring, request, command, input_method, docstring)
+@when(re(f'we run "alog {command}" and {input_method}'))
+def we_run_alog_docstring(capsys, keyring, request, command, input_method, docstring):
+    we_run_alog(capsys, keyring, request, command, input_method, docstring)
 
 
-@when(re(f'we run "jrnl ?{command}" and {input_method} {all_input}'))
-@when(re(f'we run "jrnl {command}"(?! and)'))
-@when('we run "jrnl"')
-def we_run_jrnl(capsys, keyring, request, command, input_method, all_input):
+@when(re(f'we run "alog ?{command}" and {input_method} {all_input}'))
+@when(re(f'we run "alog {command}"(?! and)'))
+@when('we run "alog"')
+def we_run_alog(capsys, keyring, request, command, input_method, all_input):
     from keyring import set_keyring
 
     set_keyring(keyring)

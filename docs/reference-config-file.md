@@ -1,11 +1,11 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
 # Configuration File Reference
 
-`jrnl` stores its information in a YAML configuration file.
+`alog` stores its information in a YAML configuration file.
 
 !!! note
     Backup your journal and config file before editing. Changes to the config file
@@ -13,15 +13,15 @@ License: https://www.gnu.org/licenses/gpl-3.0.html
 
 ## Config location
 You can find your configuration file location by running:
-`jrnl --list`
+`alog --list`
 
-By default, the configuration file is `~/.config/jrnl/jrnl.yaml`.
+By default, the configuration file is `~/.config/alog/alog.yaml`.
 If you have the `XDG_CONFIG_HOME` variable set, the configuration
-file will be saved as `$XDG_CONFIG_HOME/jrnl/jrnl.yaml`.
+file will be saved as `$XDG_CONFIG_HOME/alog/alog.yaml`.
 
 !!! note
     On Windows, the configuration file is typically found at
-    `%USERPROFILE%\.config\jrnl\jrnl.yaml`.
+    `%USERPROFILE%\.config\alog\alog.yaml`.
 
 
 ## Config format
@@ -32,7 +32,7 @@ a text editor.
 
 ### journals
 
-Describes each journal used by `jrnl`. Each indented key after this key is
+Describes each journal used by `alog`. Each indented key after this key is
 the name of a journal.
 
 If a journal key has a value, that value will be interpreted as the path
@@ -54,11 +54,11 @@ key will be used instead.
 ### editor
 If set, executes this command to launch an external editor for
 writing and editing your entries. The path to a temporary file
-is passed after it, and `jrnl` processes the file once
-the editor returns control to `jrnl`.
+is passed after it, and `alog` processes the file once
+the editor returns control to `alog`.
 
 Some editors require special options to work properly, since they must be
-blocking processes to work with `jrnl`. See [External Editors](external-editors.md)
+blocking processes to work with `alog`. See [External Editors](external-editors.md)
 for details.
 
 ### encrypt
@@ -68,7 +68,7 @@ value for journals that already have data in them.
 ### template
 The path to a text file to use as a template for new entries. Only works when you
 have the `editor` field configured. If you use a template, the editor's
-[temporary files](privacy-and-security.md#files-in-transit-from-editor-to-jrnl)
+[temporary files](privacy-and-security.md#files-in-transit-from-editor-to-alog)
 will have the same extension as the template.
 
 ### tagsymbols
@@ -80,13 +80,13 @@ Symbols to be interpreted as tags.
     interpreted as a meta-character starting a comment. This means that if
     you type
 
-    > `jrnl Implemented endless scrolling on the #frontend of our website.`
+    > `alog Implemented endless scrolling on the #frontend of our website.`
 
     your bash will chop off everything after the `#` before passing it to
-      `jrnl`. To avoid this, wrap your input into quotation marks like
+      `alog`. To avoid this, wrap your input into quotation marks like
       this:
 
-    > `jrnl "Implemented endless scrolling on the #frontend of our website."`
+    > `alog "Implemented endless scrolling on the #frontend of our website."`
 
   Or use the built-in prompt or an external editor to compose your
   entries.
@@ -102,14 +102,14 @@ Do not change this for an existing journal, since that might lead
 to data loss.
 
 !!! note
-    `jrnl` doesn't support the `%z` or `%Z` time zone identifiers.
+    `alog` doesn't support the `%z` or `%Z` time zone identifiers.
 
 ### highlight
 If `true`, tags will be highlighted in cyan.
 
 ### linewrap
 Controls the width of the output. Set to `false` if you don't want to
-wrap long lines. Set to `auto` to let `jrnl` automatically determine
+wrap long lines. Set to `auto` to let `alog` automatically determine
 the terminal width.
 
 ### colors
@@ -151,6 +151,6 @@ semantic_search:
 Requires the `semantic` extra: `poetry install -E semantic`.
 
 ### version
-`jrnl` automatically updates this field to the version that it is running.
+`alog` automatically updates this field to the version that it is running.
 There is no need to change this field manually.
 

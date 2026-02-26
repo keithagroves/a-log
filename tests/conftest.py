@@ -1,11 +1,11 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 from pytest import mark
 from pytest import skip
 
-from jrnl.os_compat import on_posix
-from jrnl.os_compat import on_windows
+from alog.os_compat import on_posix
+from alog.os_compat import on_windows
 
 pytest_plugins = [
     "tests.lib.fixtures",

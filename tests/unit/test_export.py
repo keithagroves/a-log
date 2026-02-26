@@ -1,13 +1,13 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 from unittest import mock
 
 import pytest
 
-from jrnl.exception import JrnlException
-from jrnl.plugins.fancy_exporter import check_provided_linewrap_viability
-from jrnl.plugins.yaml_exporter import YAMLExporter
+from alog.exception import AlogException
+from alog.plugins.fancy_exporter import check_provided_linewrap_viability
+from alog.plugins.yaml_exporter import YAMLExporter
 
 
 @pytest.fixture()
@@ -28,13 +28,13 @@ class TestFancy:
 
         total_linewrap = 12
 
-        with pytest.raises(JrnlException):
+        with pytest.raises(AlogException):
             check_provided_linewrap_viability(total_linewrap, [content], journal)
 
 
 class TestYaml:
     @mock.patch("builtins.open")
     def test_export_to_nonexisting_folder(self, mock_open):
-        with pytest.raises(JrnlException):
+        with pytest.raises(AlogException):
             YAMLExporter.write_file("journal", "non-existing-path")
         mock_open.assert_not_called()

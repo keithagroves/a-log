@@ -1,11 +1,11 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import datetime
 
 import pytest
 
-from jrnl import time
+from alog import time
 
 
 def test_default_hour_is_added():

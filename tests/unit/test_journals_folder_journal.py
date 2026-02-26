@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import pathlib
@@ -6,7 +6,7 @@ from unittest import mock
 
 import pytest
 
-from jrnl.journals.FolderJournal import Folder
+from alog.journals.FolderJournal import Folder
 
 
 @pytest.mark.parametrize(

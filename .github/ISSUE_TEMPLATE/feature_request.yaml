@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest an idea for jrnl
+description: Suggest an idea for alog
 title: "Feature Report"
 labels: [ ":new:", "enhancement" ]
 body:
@@ -25,7 +25,7 @@ body:
     attributes:
       label: Example Usage
       description: Please provide examples of the usage you would like to see.
-      placeholder: e.g `jrnl --new-flag="super cool new feature"`
+      placeholder: e.g `alog --new-flag="super cool new feature"`
     validations:
       required: true
 

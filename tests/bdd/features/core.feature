@@ -1,18 +1,18 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
-Feature: Functionality of jrnl outside of actually handling journals
+Feature: Functionality of alog outside of actually handling journals
 
     Scenario: Displaying the version number
         Given we use the config "simple.yaml"
-        When we run "jrnl --version"
+        When we run "alog --version"
         Then we should get no error
-        Then the output should match "^jrnl v\d+\.\d+(\.\d+)?(-(alpha|beta)\d*)?"
+        Then the output should match "^alog v\d+\.\d+(\.\d+)?(-(alpha|beta)\d*)?"
 
     Scenario: Running the diagnostic command
         Given we use the config "simple.yaml"
-        When we run "jrnl --diagnostic"
-        Then the output should contain "jrnl"
+        When we run "alog --diagnostic"
+        Then the output should contain "alog"
         And the output should contain "Python"
         And the output should contain "OS"
 

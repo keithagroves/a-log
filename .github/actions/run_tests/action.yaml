@@ -1,5 +1,5 @@
-name: run jrnl tests
-description: Runs all jrnl tests on multiple platforms
+name: run alog tests
+description: Runs all alog tests on multiple platforms
 inputs:
   cache-string:
     description: 'Cache string secret. Change to bust the cache'

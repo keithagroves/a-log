@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import sys
@@ -11,7 +11,7 @@ import pytest
     "ignore:.*imp module is deprecated.*"
 )  # ansiwrap spits out an unrelated warning
 def test_initialize_autocomplete_runs_without_readline():
-    from jrnl import install
+    from alog import install
 
     with mock.patch.dict(sys.modules, {"readline": None}):
         install._initialize_autocomplete()  # should not throw exception

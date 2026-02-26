@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 name: Release
@@ -27,9 +27,9 @@ jobs:
     steps:
     - name: Validate version
       run: |
-        JRNL_VERSION="${{ github.event.inputs.version }}"
-        echo "::debug::version: $JRNL_VERSION"
-        if [[ ! $JRNL_VERSION =~ ^v[0-9]+(\.[0-9]+){1,2}(-(alpha|beta)([0-9]+)?)?$ ]]; then
+        ALOG_VERSION="${{ github.event.inputs.version }}"
+        echo "::debug::version: $ALOG_VERSION"
+        if [[ ! $ALOG_VERSION =~ ^v[0-9]+(\.[0-9]+){1,2}(-(alpha|beta)([0-9]+)?)?$ ]]; then
           echo
           echo "::error::Bad version"
           echo
@@ -56,9 +56,9 @@ jobs:
     steps:
     - name: Get version
       run: |
-        JRNL_VERSION="${{ github.event.inputs.version }}"
-        echo "::debug::version: $JRNL_VERSION"
-        echo "JRNL_VERSION=$JRNL_VERSION" >> "$GITHUB_ENV"
+        ALOG_VERSION="${{ github.event.inputs.version }}"
+        echo "::debug::version: $ALOG_VERSION"
+        echo "ALOG_VERSION=$ALOG_VERSION" >> "$GITHUB_ENV"
 
     - name: Set up Python
       uses: actions/setup-python@v6
@@ -68,12 +68,12 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v6
       with:
-        token: ${{ secrets.JRNL_BOT_TOKEN }}
+        token: ${{ secrets.ALOG_BOT_TOKEN }}
 
     - name: Config git user
       run: |
-        git config --global user.name "${{ secrets.JRNL_BOT_NAME }}"
-        git config --global user.email "${{ secrets.JRNL_BOT_EMAIL }}"
+        git config --global user.name "${{ secrets.ALOG_BOT_NAME }}"
+        git config --global user.email "${{ secrets.ALOG_BOT_EMAIL }}"
 
     - name: Install dependencies
       run: pip install poetry
@@ -81,15 +81,15 @@ jobs:
     - name: Update version in files
       if: ${{ github.event.inputs.include_repo_version == 'true' }}
       run: |
-        poetry version "$JRNL_VERSION"
-        echo "__version__ = \"$JRNL_VERSION\"" > jrnl/__version__.py
+        poetry version "$ALOG_VERSION"
+        echo "__version__ = \"$ALOG_VERSION\"" > alog/__version__.py
 
     - name: Commit updated files
       if: ${{ github.event.inputs.include_repo_version == 'true' && github.repository == env.HOME_REPO }}
       run: |
-        git add pyproject.toml jrnl/__version__.py
-        git commit -m "Increment version to ${JRNL_VERSION}"
-        git tag -a -m "$JRNL_VERSION" "$JRNL_VERSION"
+        git add pyproject.toml alog/__version__.py
+        git commit -m "Increment version to ${ALOG_VERSION}"
+        git tag -a -m "$ALOG_VERSION" "$ALOG_VERSION"
         git push
         git push --tags
 
@@ -105,5 +105,5 @@ jobs:
     - name: Get PyPI version
       id: pypi-version-getter
       run: |
-        pypi_version="$(find dist/jrnl-*.tar.gz | sed -r 's!dist/jrnl-(.*)\.tar\.gz!\1!')"
+        pypi_version="$(find dist/alog-*.tar.gz | sed -r 's!dist/alog-(.*)\.tar\.gz!\1!')"
         echo "pypi_version=$pypi_version" >> "$GITHUB_OUTPUT"

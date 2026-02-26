@@ -1,5 +1,5 @@
 <!--
-Copyright © 2012-2023 jrnl contributors
+Copyright © 2012-2023 alog contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
@@ -7,7 +7,7 @@ License: https://www.gnu.org/licenses/gpl-3.0.html
 
 ## Synopsis
 ```
-usage: jrnl [--debug] [--help] [--version] [--list] [--encrypt] [--decrypt]
+usage: alog [--debug] [--help] [--version] [--list] [--encrypt] [--decrypt]
             [--import] [--index-search] [-on DATE] [-today-in-history]
             [-month DATE] [-day DATE] [-year DATE] [-from DATE] [-to DATE]
             [-contains TEXT] [-search QUERY] [-and] [-starred]
@@ -55,13 +55,13 @@ Optional parameters:
 ```sh
 --file FILENAME
 ```
-Specify a file to import. If not provided, `jrnl` will use STDIN as the data source.
+Specify a file to import. If not provided, `alog` will use STDIN as the data source.
 
 ```sh
 --format TYPE
 ```
 Specify the format of the file that is being imported. Defaults to the same data
-storage method that jrnl uses. See [formats](formats.md) for more information.
+storage method that alog uses. See [formats](formats.md) for more information.
 
 ## Writing new entries
 See [Basic Usage](usage.md).
@@ -91,7 +91,7 @@ entries, such as `yesterday`, `today`, `Tuesday`, or `2021-08-01`.
 | -not [TAG] | Exclude entries with this tag |
 | -not -starred | Exclude entries that are starred |
 | -not -tagged | Exclude entries that are tagged |
-| -search QUERY | Find entries semantically similar to QUERY (requires `jrnl[semantic]`) |
+| -search QUERY | Find entries semantically similar to QUERY (requires `alog[semantic]`) |
 
 ## Searching Options
 These help you do various tasks with the selected entries from your search.
@@ -102,7 +102,7 @@ Opens the selected entries in your configured editor. It will fail if the
 `editor` key is not set in your config file.
 
 Once you begin editing, you can add multiple entries and delete entries
-by modifying the text in your editor. When your editor closes, jrnl reads
+by modifying the text in your editor. When your editor closes, alog reads
 the temporary file you were editing and makes the changes to your journal.
 
 ### --delete
@@ -127,7 +127,7 @@ same effect can be achieved using `>`.
 ### --tags
 
 Alias for '--format tags'. Returns a list of all tags and the number of times
-they occur within the searched entries. If there are no tags found, `jrnl` will output a message saying so.
+they occur within the searched entries. If there are no tags found, `alog` will output a message saying so.
 
 ### --short
 Only shows the date and titles of the searched entries.
@@ -146,7 +146,7 @@ Read [advanced usage](./advanced.md) for examples.
 ## Other Arguments
 
 ### --debug
-Prints information useful for troubleshooting while `jrnl` executes.
+Prints information useful for troubleshooting while `alog` executes.
 
 ### --diagnostic
 

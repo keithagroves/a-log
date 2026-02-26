@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import random
@@ -8,10 +8,10 @@ from unittest.mock import patch
 
 import pytest
 
-from jrnl.path import absolute_path
-from jrnl.path import expand_path
-from jrnl.path import get_semantic_index_path
-from jrnl.path import home_dir
+from alog.path import absolute_path
+from alog.path import expand_path
+from alog.path import get_semantic_index_path
+from alog.path import home_dir
 
 
 @pytest.fixture
@@ -24,7 +24,7 @@ def home_dir_str(monkeypatch):
 
 @pytest.fixture
 def random_test_var(monkeypatch):
-    name = f"JRNL_TEST_{''.join(random.sample(string.ascii_uppercase, 10))}"
+    name = f"ALOG_TEST_{''.join(random.sample(string.ascii_uppercase, 10))}"
     val = "".join(random.sample(string.ascii_lowercase, 25))
     monkeypatch.setenv(name, val)
     return (name, val)
@@ -97,7 +97,7 @@ def test_expand_path_expands_into_random_env_value_windows(_, random_test_var):
     assert expand_path(f"%{var_name}%") == getenv(var_name)
 
 
-@patch("jrnl.path.expand_path")
+@patch("alog.path.expand_path")
 @patch("os.path.abspath")
 def test_absolute_path(mock_abspath, mock_expand_path):
     test_val = "test_value"
@@ -107,11 +107,11 @@ def test_absolute_path(mock_abspath, mock_expand_path):
     mock_abspath.assert_called_with(mock_expand_path.return_value)
 
 
-@patch("jrnl.path.expand_path")
+@patch("alog.path.expand_path")
 def test_get_semantic_index_path(mock_expand_path):
     mock_expand_path.return_value = "/tmp/my-journal.txt"
 
     path = get_semantic_index_path("~/my-journal.txt")
 
-    assert path == "/tmp/.jrnl_semantic.db"
+    assert path == "/tmp/.alog_semantic.db"
     mock_expand_path.assert_called_with("~/my-journal.txt")

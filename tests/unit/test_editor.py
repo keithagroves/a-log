@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import os
@@ -7,9 +7,9 @@ from unittest.mock import patch
 
 import pytest
 
-from jrnl.editor import get_template_path
-from jrnl.editor import read_template_file
-from jrnl.exception import JrnlException
+from alog.editor import get_template_path
+from alog.editor import read_template_file
+from alog.exception import AlogException
 
 
 @patch(
@@ -17,9 +17,9 @@ from jrnl.exception import JrnlException
 )  # prevent failures in CI if current directory has been deleted
 @patch("builtins.open", side_effect=FileNotFoundError())
 def test_read_template_file_with_no_file_raises_exception(mock_open, mock_getcwd):
-    with pytest.raises(JrnlException) as ex:
+    with pytest.raises(AlogException) as ex:
         read_template_file("invalid_file.txt")
-        assert isinstance(ex.value, JrnlException)
+        assert isinstance(ex.value, AlogException)
 
 
 @patch(
@@ -37,7 +37,7 @@ def test_get_template_path_when_exists_returns_correct_path():
     assert output == os.path.join("templatepath", "template")
 
 
-@patch("jrnl.editor.absolute_path")
+@patch("alog.editor.absolute_path")
 def test_get_template_path_when_doesnt_exist_returns_correct_path(mock_absolute_paths):
     with patch("os.path.exists", return_value=False):
         output = get_template_path("template", "templatepath")

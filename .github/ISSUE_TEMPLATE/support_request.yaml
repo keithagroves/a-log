@@ -1,5 +1,5 @@
 name: Support Request
-description: Get help with jrnl
+description: Get help with alog
 title: Support Request
 labels: [ ":new:", "support" ]
 body:
@@ -15,7 +15,7 @@ body:
     id: diagnostic
     attributes:
       label: Diagnostic output
-      description: Run `jrnl --diagnostic` and paste the output below
+      description: Run `alog --diagnostic` and paste the output below
       placeholder: Paste output here
     validations:
       required: true

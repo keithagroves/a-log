@@ -1,4 +1,4 @@
-# Copyright © 2012-2023 jrnl contributors
+# Copyright © 2012-2023 alog contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
 import json
@@ -11,7 +11,7 @@ from pytest_bdd.parsers import parse
 from pytest_bdd.parsers import re as pytest_bdd_parsers_re
 from ruamel.yaml import YAML
 
-from jrnl.config import scope_config
+from alog.config import scope_config
 from tests.lib.helpers import assert_equal_tags_ignoring_order
 from tests.lib.helpers import does_directory_contain_files
 from tests.lib.helpers import does_directory_contain_n_files
