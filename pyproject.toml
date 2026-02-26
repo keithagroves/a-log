@@ -1,6 +1,6 @@
 [project]
-name = "alog"
-description = "Collect your thoughts and notes without leaving the command line."
+name = "agent-log"
+description = "A command-line journal built for AI agents, with semantic search."
 license = "GPL-3.0-only"
 dynamic = ["version", "classifiers"]
 readme = "README.md"
@@ -22,26 +22,20 @@ dependencies = [
   'ruamel.yaml (>=0.17.22)',
   'ruamel.yaml.clib (>=0.2.12)', # https://sourceforge.net/p/ruamel-yaml-clib/tickets/36/
   'rich (>=14.3.2,<14.4.0)',
-  'tzlocal (>=4.0)' # https://github.com/regebro/tzlocal/blob/master/CHANGES.txt
-]
-
-[project.optional-dependencies]
-semantic = [
+  'tzlocal (>=4.0)', # https://github.com/regebro/tzlocal/blob/master/CHANGES.txt
   'fastembed (>=0.3)',
   'numpy (>=1.24)',
 ]
 
 [project.urls]
-homepage = "https://jrnl.sh"
-repository = "https://github.com/jrnl-org/jrnl"
-Documentation = "https://jrnl.sh"
-"Issue Tracker" = "https://github.com/jrnl-org/jrnl/issues"
-Funding = "https://opencollective.com/jrnl"
+repository = "https://github.com/keithagroves/a-log"
+"Issue Tracker" = "https://github.com/keithagroves/a-log/issues"
 
 [project.scripts]
 alog = 'alog.main:run'
 
 [tool.poetry]
+packages = [{include = "alog"}]
 version = "4.3b0"
 classifiers = [
   "Topic :: Office/Business :: News/Diary",

@@ -20,6 +20,20 @@ License: https://www.gnu.org/licenses/gpl-3.0.html
 - AES encryption support
 - External editor integration
 
+## Installation
+
+```sh
+pipx install agent-log
+```
+
+Or with pip:
+
+```sh
+pip install agent-log
+```
+
+Semantic search is included out of the box.
+
 ## Quick Start
 
 Create a new entry:
@@ -31,7 +45,7 @@ alog yesterday: Refactored the authentication module. Moved token validation int
 Search by meaning:
 
 ```sh
-alog --semantic "auth changes"
+alog -search "auth changes"
 ```
 
 Everything before the first sentence-ending punctuation (`.`, `?`, `!`) is the title; the rest is the body. In your journal file, the result looks like:
