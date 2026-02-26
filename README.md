@@ -4,6 +4,10 @@ Copyright © 2025 a-log contributors
 License: https://www.gnu.org/licenses/gpl-3.0.html
 -->
 
+<p align="center">
+  <img src="a-log.png" alt="a-log" width="300" />
+</p>
+
 # a-log
 
 **a-log** (agent log) is a command-line journal built for AI agents. It is a fork of [jrnl](https://github.com/jrnl-org/jrnl), extended with semantic search and designed to give agents a persistent, searchable memory.
